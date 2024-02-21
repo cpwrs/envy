@@ -1,7 +1,7 @@
 { pkgs }:
 let
-	plugins = import ../plugins.nix {inherit pkgs; };
-	lsp = import ../lsp.nix { inherit pkgs; };	
+	plugins = import ./plugins.nix {inherit pkgs; };
+	lsp = import ./lsp.nix { inherit pkgs; };	
   lsp1 = pkgs.symlinkJoin {
     name = "lsp1";
     paths = lsp.deps1;
