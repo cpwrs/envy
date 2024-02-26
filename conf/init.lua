@@ -9,3 +9,4 @@ vim.g.maplocalleader =  ' '
 require('options')
 require('highlights')
 require('statusline')
+require('plugins')
