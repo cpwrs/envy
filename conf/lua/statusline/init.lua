@@ -1,6 +1,5 @@
 -- Define statusline modules and create bindings to neovim events.
 
-local Job = require('plenary.job')
 local Module = require('statusline/module')
 
 -- Translate from the mode neovim gives us to what will be displayed.
