@@ -4,5 +4,5 @@ with pkgs.vimPlugins; [
 	nvim-lspconfig
 	oil-nvim
 	trouble-nvim
-	nvim-treesitter	
+  nvim-treesitter.withAllGrammars
 ]

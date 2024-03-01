@@ -1,6 +1,6 @@
 -- Execute all plugin modules
 
-require('plugs/mason')
+require('plugs/lsp')
 require('plugs/telescope')
 require('plugs/oil')
 require('plugs/treesitter')

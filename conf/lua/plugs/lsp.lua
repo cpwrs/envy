@@ -1,9 +1,7 @@
 -- Configuration for the nvim-lspconfig plugin
 
-local mason = require('mason')
 local lspconfig = require('lspconfig')
 
-mason.setup()
 lspconfig.pyright.setup({})
 lspconfig.clangd.setup({})
 

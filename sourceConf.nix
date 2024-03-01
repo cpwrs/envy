@@ -14,6 +14,9 @@ let
 		in 
 			# Return a string that sources the config entry point lua file.
 			# All other files are required as modules inside init.
-			"luafile ${configDir}/init.lua";
+			''
+				set runtimepath+=${configDir}
+				luafile ${configDir}/init.lua
+			'';
 in
 	sourceConfig "conf"
