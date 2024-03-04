@@ -91,8 +91,6 @@ local highlights = {
   PmenuSel = { fg = bright, bg = grey4 },
   PmenuSbar = { fg = grey3, bg = grey5 },
   PmenuThumb = { bg = green },
-  StatusLine = { fg = green, bg = grey5, bold = true },
-  StatusLineExtra = { fg = bright, bg = grey4 },
   Visual = { bg = grey3 },
   VisualNOS = { link = "Visual" },
 
@@ -101,17 +99,23 @@ local highlights = {
   DiagnosticWarn = { fg = orange },
   DiagnosticInfo = { fg = blue },
   DiagnosticHint = { fg = green },
-  StatusError = { fg = red, bg = grey4, bold = true },
-  StatusWarn = { fg = orange, bg = grey4, bold = true },
-  StatusInfo = { fg = blue, bg = grey4, bold = true },
-  StatusHint  = { fg = good, bg = grey4, bold = true },
 
   -- Telescope
   TelescopeTitle = { fg = grey6, bg = green, bold = true },
   TelescopeBorder = { fg = grey6, bg = grey6 },
   TelescopeNormal = { fg = white, bg = grey6 },
 
-  TroubleNormal = { fg = white, bg = grey6 }
+  -- Trouble
+  TroubleNormal = { fg = white, bg = grey6 },
+  
+  -- Status line
+  LineNormal = { fg = white, bg = grey5 },
+  LineTitle = { fg = bright, bg = grey5, bold = true, italic = true },
+  LineImportant = { fg = black, bg = tea, bold = true },
+  LineError = { fg = red, bg = grey5 },
+  LineWarn = { fg = orange, bg = grey5 },
+  LineInfo = { fg = blue, bg = grey5 },
+  LineHint  = { fg = good, bg = grey5 },
 }
 
 for hl, spec in pairs(highlights) do

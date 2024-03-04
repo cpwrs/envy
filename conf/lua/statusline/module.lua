@@ -2,27 +2,22 @@
 
 local Module = {}
 
--- update: Function that returns an updated string for display
--- state: String holding the current state of the module
+-- update_state: Function returning a string The output of the module.
 -- events: List of nvim event strings this module should update on
-function Module.new(update, events)
+function Module.new(state_func, events)
   local self = setmetatable({}, {__index = Module})
 
-  self.update = update 
   self.state = ""
+  self.state_func = state_func 
 
-  -- Always bind to WinEnter/BufEnter 
-  if events then
-    self.events = {"WinEnter", "BufEnter", unpack(events)}
-  else
-    self.events = {"WinEnter", "BufEnter"}
-  end
+  -- Bind to WinEnter/BufEnter by default, plus any events specified.
+  self.events = {"WinEnter", "BufEnter", unpack(events or {})}
 
   return self
 end
 
 function Module:exec()
-  self.state = self.update()
+  self.state =  self.state_func()
 end
 
 return Module
