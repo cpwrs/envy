@@ -1,18 +1,18 @@
 -- Highlight groups
 
 -- Core color palette
-local black = "#080808"
+local black = "#1a1a1a"
 local white = "#f7f7f7"
-local dark = "#000000"
+local dark = "#161616"
 local bright = "#ffffff"
 
 local grey0 = "#9e9e9e"
 local grey1 = "#808080"
-local grey2 = "#626262"
-local grey3 = "#323437"
-local grey4 = "#262626"
-local grey5 = "#1b1b1b"
-local grey6 = "#161616"
+local grey2 = "#525252"
+local grey3 = "#474747"
+local grey4 = "#424242"
+local grey5 = "#313131"
+local grey6 = "#262626"
 
 local orange = "#fdd6b6"
 local cream = "#fbfbcf"
@@ -35,22 +35,22 @@ local highlights = {
   Boolean = { fg = orange }, -- DONE
   Float = { fg = melon }, -- DONE
   Identifier = { fg = cream }, -- DONE 
-  Function = { fg = purple },
+  Function = { fg = blue },
   Conditional = { fg = turq },
-  Statement = { fg = blue },
+  Statement = { fg = purple },
   Repeat = { fg = turq },
-  Label = { fg = blue },
+  Label = { fg = purple },
   Operator = { fg = green },
   Keyword = { fg = turq },
   Exception = { fg = red },
-  PreProc = { fg = blue },
-  PreCondit = { fg = blue },
+  PreProc = { fg = purple },
+  PreCondit = { fg = purple },
   Include = { fg = green },
   Define = { fg = green },
   Type = { fg = pink },
   StorageClass = { fg = pink },
-  Structure = { fg = blue },
-  Typedef = { fg = blue },
+  Structure = { fg = purple },
+  Typedef = { fg = purple },
   Special = { fg = pink },
   Delimiter = { fg = white },
   Underlined = { fg = white },
@@ -72,7 +72,7 @@ local highlights = {
   DiffAdd = { bg = good, fg = white },
   DiffChange = { bg = blue, fg = white },
   DiffDelete = { bg = bad, fg = white },
-  EndOfBuffer = { fg = black, bg = black },
+  EndOfBuffer = { fg = grey1, bg = black },
   ErrorMsg = { fg = bad },
   WinSeperator = { fg = black, bg = black },
   VertSplit = { link = "WinSeperator" },
@@ -110,9 +110,9 @@ local highlights = {
   
   -- Status line
   LineNormal = { fg = white, bg = grey5 },
-  LineTitle = { fg = bright, bg = grey5, bold = true, italic = true },
-  LineImportant = { fg = black, bg = tea, bold = true },
-  LineError = { fg = red, bg = grey5 },
+  LineTitle = { fg = bright, bg = grey5, bold = true },
+  LineImportant = { fg = green, bg = black, bold = true },
+  LineError = { fg = red, bg = purple },
   LineWarn = { fg = orange, bg = grey5 },
   LineInfo = { fg = blue, bg = grey5 },
   LineHint  = { fg = good, bg = grey5 },

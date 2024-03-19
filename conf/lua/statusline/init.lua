@@ -1,18 +1,21 @@
+-- Define the components (Modules, strings) that make up the status line, and set up their autocommands.
 
 local Line = require('statusline/line')
 local Lib = require('statusline/libmodule') -- Collection of common line modules
 
-Line.components = {
-  "%#LineImportant# ", -- Change hl group
-  Lib.mode, " ",
+components = {
+  "%#LineImportant#",
+  Lib.mode,
+  "%#LineTitle# File%#LineNormal#",
+  Lib.path,
+  Lib.modified,
+  Lib.permissions,
+  "%=",
+  "%#LineTitle#Lsp%#LineNormal# ",
+  Lib.lsp,
+  Lib.diagnostics,
+  "%#LineImportant#",
   Lib.position,
-  " %#LineTitle# file %#LineNormal#",
-  Lib.path, " ",
-  Lib.modified, " ",
-  Lib.permissions, " ",
-  Lib.size,
-  "%=", -- Align right
-  "%#LineTitle#lsp %#LineNormal#",
 }
 
-Line:create_autocmds()
+Line:setup(components)
