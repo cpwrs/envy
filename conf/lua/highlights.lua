@@ -61,7 +61,7 @@ local highlights = {
   -- Editor
   ColorColumn = { fg = white },
   LineNr = { fg = grey1 },
-  CursorLineNr = { fg = grey0, bg = grey6, bold = true },
+  CursorLineNr = { fg = bright, bg = grey6, bold = true },
   CursorLineSign = { bg = grey6 },
   CursorLine = { bg = grey6 },
   SignColumn = { bg = black },
