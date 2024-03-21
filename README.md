@@ -1,19 +1,12 @@
 <div align="center">
 
-### envy: Terse, fast, and functional Neovim configuration
+### envy: Tiny & fast Neovim configuration
 </div>
 
 ---
 
-Features:
-- Color theme
-- Status line
-- Syntax highlighting (nvim-treesitter)
-- Fuzzy finder (telescope.nvim)
-- Language server management (mason.nvim)
-- LSP code diagnostics, linting, and formatting (nvim-lspconfig)
-- Project-wide diagnostics buffer (trouble.nvim)
-- Edit directories as buffers (oil.nvim)
-- Autocompletion (omnitype)
+envy is a nix flake that overlays the defualt 
+[neovim nixpkg](https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/neovim/default.nix)
+to build neovim master, install plugins, and source my configurations.
 
 ---
