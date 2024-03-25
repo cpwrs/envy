@@ -8,38 +8,28 @@
       url = "github:neovim/neovim?dir=contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-    };
   };
-  outputs = { self, nixpkgs, neovim, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        overlayFlakeInputs = prev: final: {
-          neovim = neovim.packages.${prev.system}.neovim;
-        };
+  outputs = { self, nixpkgs, neovim}:
+    let
+      overlayFlakeInputs = prev: final: {
+        neovim = neovim.packages.x86_64-linux.neovim;
+      };
 
-        overlayMyNeovim = prev: final: {
-          myNeovim = import ./myNeovim.nix {
-            pkgs = prev;
-          };
+      overlayMyNeovim = prev: final: {
+        myNeovim = import ./myNeovim.nix {
+          pkgs = final;
         };
+      };
 
-        pkgs = import nixpkgs {
-          system = system;
-          overlays = [ overlayFlakeInputs overlayMyNeovim ];
-        };
-
-      in
-      {
-        packages = rec {
-          nvim = pkgs.myNeovim;
-          default = nvim;
-        };
-
-        apps = rec {
-          nvim = flake-utils.lib.mkApp { drv = self.packages.${system}.nvim; };
-          default = nvim;
-        };
-      });
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        overlays = [ overlayFlakeInputs overlayMyNeovim ];
+      };
+    in {
+      packages.x86_64-linux.default = pkgs.myNeovim;
+      apps.x86-64-linux.default = {
+        type = "app";
+        program = "${pkgs.myNeovim}/bin/nvim";
+      };
+    };
 }
