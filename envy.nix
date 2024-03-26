@@ -8,4 +8,4 @@ in
 			inherit customRC;
       packages.all.start = plugins;
     };
-  };
+  }
