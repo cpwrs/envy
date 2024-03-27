@@ -59,10 +59,9 @@ local highlights = {
   Error = { fg = red },
 
   -- Editor
-  ColorColumn = { fg = white },
   LineNr = { fg = grey1 },
-  CursorLineNr = { fg = bright, bg = grey6, bold = true },
-  CursorLineSign = { bg = grey6 },
+  CursorLineNr = { fg = green, bg = black },
+  CursorLineSign = { bg = black },
   CursorLine = { bg = grey6 },
   SignColumn = { bg = black },
   Cursor = { bg = white, fg = black },
@@ -111,7 +110,7 @@ local highlights = {
   -- Status line
   LineNormal = { fg = white, bg = grey5 },
   LineTitle = { fg = bright, bg = grey5, bold = true },
-  LineImportant = { fg = green, bg = black, bold = true },
+  LineImportant = { fg = turq, bg = black, bold = true },
   LineError = { fg = red, bg = purple },
   LineWarn = { fg = orange, bg = grey5 },
   LineInfo = { fg = blue, bg = grey5 },
