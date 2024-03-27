@@ -22,12 +22,12 @@ local green = "#89ffcb"
 local tea = "#d3ffdb"
 local pink = "#ffc9f8"
 local purple = "#c9a7ff"
-local blue = "#ab9bff"
+local blue = "#c0ceff"
 local turq = "#cdffff"
 
 local highlights = {
   -- Syntax
-  Comment = { fg = grey2 },
+  Comment = { fg = grey1, italic = true },
   Constant = { fg = cream }, -- DONE
   String = { fg = tea }, -- DONE
   Character = { fg = tea }, -- DONE
@@ -35,7 +35,7 @@ local highlights = {
   Boolean = { fg = orange }, -- DONE
   Float = { fg = melon }, -- DONE
   Identifier = { fg = cream }, -- DONE 
-  Function = { fg = blue },
+  Function = { fg = blue, italic = true },
   Conditional = { fg = turq },
   Statement = { fg = purple },
   Repeat = { fg = turq },
