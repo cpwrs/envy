@@ -1,18 +1,18 @@
 -- Highlight groups
 
 -- Core color palette
-local black = "#1a1a1a"
+local black = "#0d0d0d"
 local white = "#f7f7f7"
-local dark = "#161616"
+local dark = "#000000"
 local bright = "#ffffff"
 
-local grey0 = "#9e9e9e"
-local grey1 = "#808080"
-local grey2 = "#525252"
+local grey0 = "#808080"
+local grey1 = "#646464"
+local grey2 = "#565656"
 local grey3 = "#474747"
-local grey4 = "#424242"
-local grey5 = "#313131"
-local grey6 = "#262626"
+local grey4 = "#313131"
+local grey5 = "#262626"
+local grey6 = "#1a1a1a"
 
 local orange = "#fdd6b6"
 local cream = "#fbfbcf"
@@ -21,9 +21,9 @@ local melon = "#ff909d"
 local green = "#89ffcb"
 local tea = "#d3ffdb"
 local pink = "#ffc9f8"
-local purple = "#c9a7ff"
+local purple = "#d7afff"
 local blue = "#c0ceff"
-local turq = "#cdffff"
+local turq = "#bcffff"
 
 local highlights = {
   -- Syntax
@@ -35,7 +35,7 @@ local highlights = {
   Boolean = { fg = orange }, -- DONE
   Float = { fg = melon }, -- DONE
   Identifier = { fg = cream }, -- DONE 
-  Function = { fg = blue, italic = true },
+  Function = { fg = blue },
   Conditional = { fg = turq },
   Statement = { fg = purple },
   Repeat = { fg = turq },
