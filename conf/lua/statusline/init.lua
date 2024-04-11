@@ -3,19 +3,18 @@
 local Line = require('statusline/line')
 local Lib = require('statusline/libmodule') -- Collection of common line modules
 
-components = {
+local components = {
   "%#LineImportant#",
   Lib.mode,
-  "%#LineTitle# File%#LineNormal#",
+  "%#LineTitle# Buf%#LineNormal#",
   Lib.path,
   Lib.modified,
   Lib.permissions,
+  Lib.position,
   "%=",
   "%#LineTitle#Lsp%#LineNormal# ",
   Lib.lsp,
   Lib.diagnostics,
-  "%#LineImportant#",
-  Lib.position,
 }
 
 Line:setup(components)

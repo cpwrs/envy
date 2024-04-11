@@ -7,6 +7,7 @@ vim.g.maplocalleader =  ' '
 
 -- Load neovim options and plugin configurations.
 require('options')
+require('globals')
 require('highlights')
 require('statusline')
 require('plugs')

@@ -26,7 +26,7 @@ local options = {
   ['wrap'] = false,
   ['scrolloff'] = 8,
   ['incsearch'] = true,
-  ['clipboard'] = 'unnamedplus'
+  ['clipboard'] = 'unnamedplus',
 }
 
 -- Assign each vim.opt key-value listed in the options table.

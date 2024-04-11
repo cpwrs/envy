@@ -4,11 +4,11 @@ local Module = require('statusline/module')
 local LibModule = {}
 
 -- Helper data for the diagnostics module.
-diag_data = {
-  {level = "Error", hl = "%#LineError#", display = "×"},
-  {level = "Warn", hl = "%#LLineWarn#", display = "!"},
-  {level = "Info", hl = "%#LineInfo#", display = "*"},
-  {level = "Hint", hl = "%#LineHint#", display = "?"},
+local diag_data = {
+  {severity = vim.diagnostic.severity.ERROR, hl = "%#LineError#", display = "*"},
+  {severity = vim.diagnostic.severity.WARN, hl = "%#LineWarn#", display = "!"},
+  {severity = vim.diagnostic.severity.INFO, hl = "%#LineInfo#", display = "i"},
+  {severity = vim.diagnostic.severity.HINT, hl = "%#LineHint#", display = "?"},
 }
 
 -- Translator table for the mode module.
@@ -35,9 +35,9 @@ local translate_mode = {
 
 -- Show the editing mode.
 LibModule.mode = Module.new(
-  function() 
+  function()
     local mode = translate_mode[vim.api.nvim_get_mode().mode]
-    if mode == nil then mode = "Mode" end 
+    if mode == nil then mode = "Mode" end
     return string.format(" %s ", mode)
   end,
   {"ModeChanged"}
@@ -64,17 +64,20 @@ LibModule.modified = Module.new(
 )
 
 -- Display diagnostic count by severity.
-LibModule.diagnstics = Module.new(
+LibModule.diagnostics = Module.new(
   function()
-    status = ""
-    for k, data in pairs(diag_data) do
-      count = vim.tbl_count(vim.diagnostic.get(0, {severity = data.level}))
+    local status = ""
+    for _, data in pairs(diag_data) do
+      local count = vim.tbl_count(vim.diagnostic.get(0, {severity = data.severity}))
       if count ~= 0 then
         status = status .. data.hl .. count .. data.display .. " "
       end
     end
+
     if status ~= "" then
-      status = "(" .. string.sub(status, 0, -2) .. "%#LineNormal#)"
+      status = "(" .. string.sub(status, 0, -2) .. "%#LineNormal#) "
+    else
+      status = " "
     end
 
     return status
@@ -95,7 +98,6 @@ LibModule.lsp = Module.new(
       end
     end
 
-    lsp = lsp .. " "
     return lsp
   end,
   {"LspAttach", "LspDetach"}
@@ -116,7 +118,7 @@ LibModule.position = Module.new(
     if vim.bo.filetype == "alpha" then
       return ""
     end
-    return " %l,%c "
+    return " %l,%c"
   end,
   {"CursorMoved"}
 )
@@ -125,14 +127,15 @@ LibModule.size = Module.new(
   function()
     local fname = vim.fn.expand("%")
     local fsize = vim.fn.getfsize(fname)
+    local size_string = ""
 
     if (fsize == -1) or (fsize == -2) then
-      fsize = ""
+      size_string = ""
     else
-      fsize = " " .. fsize .. "B"
+      size_string = " " .. fsize .. "B"
     end
 
-    return fsize
+    return size_string
   end
 )
 

@@ -68,17 +68,16 @@ local highlights = {
   lCursor = { link = "Cursor" },
   CursorIM = { link = "Cursor" },
   Directory = { fg = white },
-  DiffAdd = { bg = good, fg = white },
+  DiffAdd = { bg = green, fg = white },
   DiffChange = { bg = blue, fg = white },
-  DiffDelete = { bg = bad, fg = white },
+  DiffDelete = { bg = red, fg = white },
   EndOfBuffer = { fg = grey1, bg = black },
-  ErrorMsg = { fg = bad },
+  ErrorMsg = { fg = red },
   WinSeperator = { fg = black, bg = black },
   VertSplit = { link = "WinSeperator" },
   MatchParen = { link = "Cursor" },
   Normal = { fg = white, bg = black },
   NormalFloat = { fg = white, bg = grey4 },
-  Float = { link = "NormalFloat" },
   NvimFloat = { link = "NormalFloat" },
   FloatBorder = { fg = grey4, bg = grey4 },
   FloatTitle = { fg = grey4, bg = green, bold = true },
@@ -106,15 +105,15 @@ local highlights = {
 
   -- Trouble
   TroubleNormal = { fg = white, bg = grey6 },
-  
+
   -- Status line
   LineNormal = { fg = white, bg = grey5 },
   LineTitle = { fg = bright, bg = grey5, bold = true },
   LineImportant = { fg = turq, bg = black, bold = true },
-  LineError = { fg = red, bg = purple },
+  LineError = { fg = red, bg = grey5 },
   LineWarn = { fg = orange, bg = grey5 },
   LineInfo = { fg = blue, bg = grey5 },
-  LineHint  = { fg = good, bg = grey5 },
+  LineHint  = { fg = green, bg = grey5 },
 }
 
 for hl, spec in pairs(highlights) do
