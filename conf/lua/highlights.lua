@@ -15,31 +15,31 @@ local grey5 = "#262626"
 local grey6 = "#1a1a1a"
 
 local orange = "#fdd6b6"
-local cream = "#fbfbcf"
+local cream = "#ffffe9"
 local red = "#ff4353"
 local melon = "#ff909d"
 local green = "#89ffcb"
 local tea = "#d3ffdb"
-local pink = "#ffc9f8"
-local purple = "#d7afff"
-local blue = "#c0ceff"
-local turq = "#bcffff"
+local pink = "#ffbcf6"
+local purple = "#d19cff"
+local blue = "#cadeff"
+local turq = "#b2ffff"
 
 local highlights = {
   -- Syntax
   Comment = { fg = grey1, italic = true },
-  Constant = { fg = cream }, -- DONE
-  String = { fg = tea }, -- DONE
-  Character = { fg = tea }, -- DONE
-  Number = { fg = melon }, -- DONE 
-  Boolean = { fg = orange }, -- DONE
-  Float = { fg = melon }, -- DONE
-  Identifier = { fg = cream }, -- DONE 
-  Function = { fg = blue },
+  Constant = { fg = cream },
+  String = { fg = tea },
+  Character = { fg = tea },
+  Number = { fg = melon }, 
+  Boolean = { fg = orange },
+  Float = { fg = melon },
+  Identifier = { fg = cream }, 
+  Function = { fg = blue, italic = true },
   Conditional = { fg = turq },
   Statement = { fg = purple },
   Repeat = { fg = turq },
-  Label = { fg = purple },
+  Label = { fg = purple},
   Operator = { fg = green },
   Keyword = { fg = turq },
   Exception = { fg = red },
@@ -62,7 +62,7 @@ local highlights = {
   LineNr = { fg = grey1 },
   CursorLineNr = { fg = green, bg = black },
   CursorLineSign = { bg = black },
-  CursorLine = { bg = grey6 },
+  CursorLine = { bg = black },
   SignColumn = { bg = black },
   Cursor = { bg = white, fg = black },
   lCursor = { link = "Cursor" },
@@ -89,8 +89,14 @@ local highlights = {
   PmenuSel = { fg = bright, bg = grey4 },
   PmenuSbar = { fg = grey3, bg = grey5 },
   PmenuThumb = { bg = green },
-  Visual = { bg = grey3 },
+  Visual = { bg = grey5 },
   VisualNOS = { link = "Visual" },
+  TabLine = { fg = grey0, bg = grey6 },
+  TabLineSel = { fg = bright, bg = black },
+  TabLineFill = { fg = grey0, bg = grey6 },
+  IncSearch = { fg = black, bg = cream },
+  CurSearch = { fg = black, bg = cream },
+  Search = { fg = cream, bg = grey5 },
 
   -- Diagnostics
   DiagnosticError = { fg = red },
@@ -107,9 +113,8 @@ local highlights = {
   TroubleNormal = { fg = white, bg = grey6 },
 
   -- Status line
-  LineNormal = { fg = white, bg = grey5 },
-  LineTitle = { fg = bright, bg = grey5, bold = true },
-  LineImportant = { fg = turq, bg = black, bold = true },
+  LineNormal = { fg = white, bg = grey6 },
+  LineImportant = { fg = bright, bg = grey6, bold = true },
   LineError = { fg = red, bg = grey5 },
   LineWarn = { fg = orange, bg = grey5 },
   LineInfo = { fg = blue, bg = grey5 },

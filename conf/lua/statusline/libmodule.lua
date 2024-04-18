@@ -38,7 +38,7 @@ LibModule.mode = Module.new(
   function()
     local mode = translate_mode[vim.api.nvim_get_mode().mode]
     if mode == nil then mode = "Mode" end
-    return string.format(" %s ", mode)
+    return string.format(" %s", mode)
   end,
   {"ModeChanged"}
 )
@@ -91,7 +91,7 @@ LibModule.lsp = Module.new(
     local clients = vim.lsp.get_clients()
 
     if next(clients) == nil then
-      lsp = "none"
+      lsp = ""
     else
       for _, client in pairs(clients) do
         lsp = lsp .. client.name

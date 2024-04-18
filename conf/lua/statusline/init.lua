@@ -6,13 +6,12 @@ local Lib = require('statusline/libmodule') -- Collection of common line modules
 local components = {
   "%#LineImportant#",
   Lib.mode,
-  "%#LineTitle# Buf%#LineNormal#",
+  "%#LineNormal#",
   Lib.path,
   Lib.modified,
   Lib.permissions,
   Lib.position,
   "%=",
-  "%#LineTitle#Lsp%#LineNormal# ",
   Lib.lsp,
   Lib.diagnostics,
 }
