@@ -9,7 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, neovim}:
+  outputs = { self, nixpkgs, neovim, flake-utils }:
     let
       overlayFlakeInputs = prev: final: {
         neovim = neovim.packages.x86_64-linux.neovim;
@@ -27,9 +27,12 @@
       };
     in {
       packages.x86_64-linux.default = pkgs.envy;
-      apps.x86-64-linux.default = {
+      apps.x86_64-linux.default = {
         type = "app";
         program = "${pkgs.envy}/bin/nvim";
+      };
+      devShells.x86_64-linux.default = pkgs.mkShell {
+        packages = [ pkgs.lua-language-server ];
       };
     };
 }

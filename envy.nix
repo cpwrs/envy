@@ -1,6 +1,6 @@
 { pkgs }:
 let
-	plugins = import ./deps/plugins.nix { inherit pkgs; };
+	plugins = import ./plugins.nix { inherit pkgs; };
 	customRC = import ./sourceConf.nix { inherit pkgs; };
 in 
   pkgs.wrapNeovim pkgs.neovim {
