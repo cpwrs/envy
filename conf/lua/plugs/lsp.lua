@@ -2,7 +2,13 @@
 
 local lspconfig = require('lspconfig')
 
-lspconfig.lua_ls.setup({})
+lspconfig.lua_ls.setup({
+  settings = {
+    Lua = {
+      diagnostics = {globals = {'vim'}}
+    }
+  }
+})
 lspconfig.pyright.setup({})
 lspconfig.clangd.setup({})
 
