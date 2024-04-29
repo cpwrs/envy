@@ -8,7 +8,7 @@ function Module.new(state_func, events)
   local self = setmetatable({}, {__index = Module})
 
   self.state = ""
-  self.state_func = state_func 
+  self.state_func = state_func
 
   -- Bind to WinEnter/BufEnter by default, plus any events specified.
   self.events = {"WinEnter", "BufEnter", unpack(events or {})}

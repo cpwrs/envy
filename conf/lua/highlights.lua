@@ -1,28 +1,27 @@
 -- Highlight groups
 
 -- Core color palette
-local black = "#0d0d0d"
+local black = "#000000"
 local white = "#f7f7f7"
-local dark = "#000000"
 local bright = "#ffffff"
 
-local grey0 = "#808080"
-local grey1 = "#646464"
-local grey2 = "#565656"
-local grey3 = "#474747"
-local grey4 = "#313131"
-local grey5 = "#262626"
-local grey6 = "#1a1a1a"
+local grey0 = "#646464"
+local grey1 = "#565656"
+local grey2 = "#474747"
+local grey3 = "#313131"
+local grey4 = "#262626"
+local grey5 = "#1a1a1a"
+local grey6 = "#0d0d0d"
 
 local orange = "#fdd6b6"
-local cream = "#ffffe9"
+local cream = "#fdffd1"
 local red = "#ff4353"
 local melon = "#ff909d"
 local green = "#89ffcb"
 local tea = "#d3ffdb"
-local pink = "#ffbcf6"
+local pink = "#ffb1f5"
 local purple = "#d19cff"
-local blue = "#cadeff"
+local blue = "#a3b7ff"
 local turq = "#b2ffff"
 
 local highlights = {
@@ -32,14 +31,14 @@ local highlights = {
   String = { fg = tea },
   Character = { fg = tea },
   Number = { fg = melon },
-  Boolean = { fg = orange },
+  Boolean = { fg = purple },
   Float = { fg = melon },
   Identifier = { fg = cream },
-  Function = { fg = blue, italic = true },
+  Function = { fg = blue },
   Conditional = { fg = turq },
   Statement = { fg = purple },
   Repeat = { fg = turq },
-  Label = { fg = purple},
+  Label = { fg = purple },
   Operator = { fg = green },
   Keyword = { fg = turq },
   Exception = { fg = red },
@@ -52,7 +51,7 @@ local highlights = {
   Structure = { fg = purple },
   Typedef = { fg = purple },
   Special = { fg = pink },
-  Delimiter = { fg = white },
+  Delimiter = { fg = bright },
   Underlined = { fg = white },
   Bold = { bold = true },
   Italic = { italic = true },
@@ -113,12 +112,12 @@ local highlights = {
   TroubleNormal = { fg = white, bg = grey6 },
 
   -- Status line
-  LineNormal = { fg = white, bg = grey5 },
-  LineImportant = { fg = bright, bg = grey5, bold = true },
-  LineError = { fg = red, bg = grey5 },
-  LineWarn = { fg = orange, bg = grey5 },
-  LineInfo = { fg = blue, bg = grey5 },
-  LineHint  = { fg = green, bg = grey5 },
+  LineNormal = { fg = white, bg = grey6 },
+  LineImportant = { fg = bright, bg = grey6, bold = true },
+  LineError = { fg = red, bg = grey6 },
+  LineWarn = { fg = orange, bg = grey6 },
+  LineInfo = { fg = blue, bg = grey6 },
+  LineHint  = { fg = green, bg = grey6 },
 }
 
 for hl, spec in pairs(highlights) do
