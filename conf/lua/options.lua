@@ -12,16 +12,21 @@ local options = {
   },
   ['laststatus'] = 3,
   ['termguicolors'] = true,
+
   ['tabstop'] = 2,
   ['shiftwidth'] = 2,
   ['expandtab'] = true,
-  ['smartindent'] = true,
+  ['softtabstop'] = 0,
+  ['autoindent'] = true,
+  ['smarttab'] = true,
 
   ['number'] = true,
   ['relativenumber'] = true,
-  ['signcolumn'] = 'yes',
+  ['signcolumn'] = 'auto',
   ['cursorline'] = true,
-  ['cursorlineopt'] = 'both',
+  ['cursorlineopt'] = 'number',
+
+  ['showmode'] = false,
 
   ['wrap'] = false,
   ['scrolloff'] = 8,
