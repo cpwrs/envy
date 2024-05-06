@@ -5,7 +5,6 @@ let
     oil-nvim
 	  telescope-nvim
 	  nvim-lspconfig
-	  trouble-nvim
     nvim-treesitter.withAllGrammars
   ];
 
