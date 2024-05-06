@@ -24,7 +24,7 @@ local options = {
   ['relativenumber'] = true,
   ['signcolumn'] = 'auto',
   ['cursorline'] = true,
-  ['cursorlineopt'] = 'number',
+  ['cursorlineopt'] = 'both',
 
   ['showmode'] = false,
 

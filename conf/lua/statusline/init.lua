@@ -7,13 +7,13 @@ local components = {
   "%#LineImportant#",
   Lib.mode,
   "%#LineNormal#",
-  Lib.path,
-  Lib.modified,
-  Lib.permissions,
   Lib.position,
-  "%=",
   Lib.lsp,
   Lib.diagnostics,
+  "%=",
+  Lib.modified,
+  Lib.path,
+  Lib.permissions,
 }
 
 Line:setup(components)

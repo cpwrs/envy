@@ -47,7 +47,7 @@ LibModule.mode = Module.new(
 LibModule.path = Module.new(
   function()
     local fname = vim.fn.expand("%")
-    local fpath = " " .. string.gsub(fname, vim.loop.cwd(), '')
+    local fpath = string.gsub(fname, vim.loop.cwd(), '')
     return fpath
   end
 )
@@ -56,7 +56,7 @@ LibModule.path = Module.new(
 LibModule.modified = Module.new(
   function()
     if vim.bo.modified then
-      return " [+]"
+      return "+"
     end
     return ""
   end,
@@ -70,12 +70,12 @@ LibModule.diagnostics = Module.new(
     for _, data in pairs(diag_data) do
       local count = vim.tbl_count(vim.diagnostic.get(0, {severity = data.severity}))
       if count ~= 0 then
-        status = status .. data.hl .. count .. data.display .. " "
+        status = status .. data.hl .. count .. data.display
       end
     end
 
     if status ~= "" then
-      status = "(" .. string.sub(status, 0, -2) .. "%#LineNormal#) "
+      status = " " .. status .. "%#LineNormal#"
     else
       status = " "
     end
@@ -98,7 +98,7 @@ LibModule.lsp = Module.new(
       end
     end
 
-    return lsp
+    return " " .. lsp
   end,
   {"LspAttach", "LspDetach"}
 )
@@ -107,7 +107,7 @@ LibModule.lsp = Module.new(
 LibModule.permissions = Module.new(
   function()
 		local fname = vim.fn.expand("%")
-		local fperm = " " .. vim.fn.getfperm(fname)
+		local fperm = " " .. vim.fn.getfperm(fname) .. " "
   	return fperm
   end
 )

@@ -1,17 +1,18 @@
 -- Highlight groups
 
 -- Core color palette
-local black = "#101010"
-local dark = "#070707"
+-- local black = "#101010"
+local black = "#1c1714"
+local dark = "#0e0d0c"
 local white = "#f7f7f7"
 local bright = "#ffffff"
 
-local grey1 = "#646464"
-local grey2 = "#565656"
-local grey3 = "#474747"
-local grey4 = "#313131"
-local grey5 = "#262626"
-local grey6 = "#1a1a1a"
+local grey1 = "#625f5f"
+local grey2 = "#544f4d"
+local grey3 = "#45403d"
+local grey4 = "#3b3531"
+local grey5 = "#322c27"
+local grey6 = "#25201b"
 
 local orange = "#fdd6b6"
 local cream = "#fdffd1"
@@ -59,7 +60,8 @@ local highlights = {
 
   -- Editor
   LineNr          = { fg = grey1 },
-  CursorLineNr    = { fg = bright },
+  CursorLineNr    = { fg = bright, bg = grey6 },
+  CursorLine      = { bg = grey6 },
   Cursor          = { bg = white, fg = black },
   lCursor         = { link = "Cursor" },
   CursorIM        = { link = "Cursor" },
@@ -100,20 +102,17 @@ local highlights = {
   DiagnosticHint  = { fg = green },
 
   -- Telescope
-  TelescopeTitle  = { fg = grey6, bg = green, bold = true },
-  TelescopeBorder = { fg = grey6, bg = grey6 },
-  TelescopeNormal = { fg = white, bg = grey6 },
-
-  -- Trouble
-  TroubleNormal   = { fg = white, bg = grey6 },
+  TelescopeTitle  = { fg = green, bg = grey5, bold = true },
+  TelescopeBorder = { fg = grey5, bg = grey5 },
+  TelescopeNormal = { fg = white, bg = grey5 },
 
   -- Status line
   LineNormal      = { fg = white, bg = dark },
   LineImportant   = { fg = bright, bg = dark, bold = true },
-  LineError       = { fg = red, bg = grey6 },
-  LineWarn        = { fg = orange, bg = grey6 },
-  LineInfo        = { fg = blue, bg = grey6 },
-  LineHint        = { fg = green, bg = grey6 },
+  LineError       = { fg = red, bg = dark },
+  LineWarn        = { fg = orange, bg = dark },
+  LineInfo        = { fg = blue, bg = dark },
+  LineHint        = { fg = green, bg = dark },
 }
 
 for hl, spec in pairs(highlights) do
