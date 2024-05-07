@@ -1,40 +1,35 @@
-# Assign vim.opts
+-- Options 
 
-local options = {
-  ['fillchars'] = {
-    horiz = ' ',
-    horizup = ' ',
-    horizdown = ' ',
-    vert = ' ',
-    vertleft  = ' ',
-    vertright = ' ' ,
-    verthoriz = ' ',
-  },
-  ['laststatus'] = 3,
-  ['termguicolors'] = true,
 
-  ['tabstop'] = 2,
-  ['shiftwidth'] = 2,
-  ['expandtab'] = true,
-  ['softtabstop'] = 0,
-  ['autoindent'] = true,
-  ['smarttab'] = true,
+-- Status line and cmd line
+vim.opt.laststatus = 3
+vim.opt.showmode = false
+vim.opt.showcmd = true
 
-  ['number'] = true,
-  ['relativenumber'] = true,
-  ['signcolumn'] = 'auto',
-  ['cursorline'] = true,
-  ['cursorlineopt'] = 'both',
+-- Finding files
+vim.opt.wildmenu = true
+vim.opt.path:append('**')
 
-  ['showmode'] = false,
+-- 24-bit RGB
+vim.opt.termguicolors = true
 
-  ['wrap'] = false,
-  ['scrolloff'] = 8,
-  ['incsearch'] = true,
-  ['clipboard'] = 'unnamedplus',
-}
+-- Indents = two spaces
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.smarttab = true
 
--- Assign each vim.opt key-value listed in the options table.
-for key, value in pairs(options) do
-  vim.opt[key] = value
-end
+-- Line numbers
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.signcolumn = 'yes'
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = 'both'
+
+vim.opt.wrap = false
+vim.opt.scrolloff = 8
+vim.opt.incsearch = true
+vim.opt.clipboard = 'unnamedplus'
+vim.opt.splitbelow = true
+vim.opt.splitright = true

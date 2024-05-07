@@ -11,6 +11,7 @@ lspconfig.lua_ls.setup({
 })
 lspconfig.pyright.setup({})
 lspconfig.clangd.setup({})
+lspconfig.rust_analyzer.setup({})
 
 -- Set LSP diagnstic icons for signcolumn
 local signs = { Error = "*", Warn = "!", Hint = "?", Info = "i" }
