@@ -109,10 +109,6 @@ local highlights = {
   -- Status line
   LineNormal      = { fg = white, bg = dark },
   LineImportant   = { fg = bright, bg = dark, bold = true },
-  LineError       = { fg = red, bg = dark },
-  LineWarn        = { fg = orange, bg = dark },
-  LineInfo        = { fg = blue, bg = dark },
-  LineHint        = { fg = green, bg = dark },
 }
 
 for hl, spec in pairs(highlights) do

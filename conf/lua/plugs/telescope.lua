@@ -7,7 +7,7 @@ telescope.setup({
   defaults = {
     layout_strategy = "bottom_pane",
     layout_config = {
-      height = 0.3,
+      height = 0.4,
       width = vim.o.columns,
       prompt_position = "bottom",
       preview_cutoff = 1,

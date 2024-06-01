@@ -1,19 +1,17 @@
--- Define the components (Modules, strings) that make up the status line, and set up their autocommands.
+-- Setup the statusline with custom content (components, strings).
 
 local Line = require('statusline/line')
-local Lib = require('statusline/libmodule') -- Collection of common line modules
+local Components = require('statusline/components') -- Collection of common line modules
 
-local components = {
+Line.setup({
   "%#LineImportant#",
-  Lib.mode,
+  Components.mode,
   "%#LineNormal#",
-  Lib.position,
-  Lib.lsp,
-  Lib.diagnostics,
+  Components.position,
+  Components.lsp,
+  Components.diagnostics,
   "%=",
-  Lib.modified,
-  Lib.path,
-  Lib.permissions,
-}
-
-Line:setup(components)
+  Components.modified,
+  Components.path,
+  Components.permissions,
+})

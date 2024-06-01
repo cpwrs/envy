@@ -1,17 +1,38 @@
+-- Library of components to display on the statusline
+
+local Comp = {}
+
+-- update_state: Function returning a string The output of the module.
+-- events: List of nvim event strings this module should update on
+function Comp.new(state_func, events)
+  local self = setmetatable({}, {__index = Comp})
+
+  self.state = ""
+  self.state_func = state_func
+
+  -- Bind to WinEnter/BufEnter by default, plus any events specified.
+  self.events = {"WinEnter", "BufEnter", unpack(events or {})}
+
+  return self
+end
+
+function Comp:exec()
+  self.state =  self.state_func()
+end
+
+
 -- Define some modules for the line.
+local Components = {}
 
-local Module = require('statusline/module')
-local LibModule = {}
-
--- Helper data for the diagnostics module.
-local diag_data = {
-  {severity = vim.diagnostic.severity.ERROR, hl = "%#LineError#", display = "*"},
-  {severity = vim.diagnostic.severity.WARN, hl = "%#LineWarn#", display = "!"},
-  {severity = vim.diagnostic.severity.INFO, hl = "%#LineInfo#", display = "i"},
-  {severity = vim.diagnostic.severity.HINT, hl = "%#LineHint#", display = "?"},
+-- Severities and their associated hl for the diagnostics component.
+local severities = {
+  {severity = vim.diagnostic.severity.ERROR, hl = "%#DiagnosticError#"},
+  {severity = vim.diagnostic.severity.WARN, hl = "%#DiagnosticWarn#"},
+  {severity = vim.diagnostic.severity.INFO, hl = "%#DiagnosticInfo#"},
+  {severity = vim.diagnostic.severity.HINT, hl = "%#DiagnosticHint#"},
 }
 
--- Translator table for the mode module.
+-- Translations for the mode component.
 local translate_mode = {
   ["n"] = "Norm",
   ["no"] = "Norm",
@@ -34,7 +55,7 @@ local translate_mode = {
 }
 
 -- Show the editing mode.
-LibModule.mode = Module.new(
+Components.mode = Comp.new(
   function()
     local mode = translate_mode[vim.api.nvim_get_mode().mode]
     if mode == nil then mode = "Mode" end
@@ -44,7 +65,7 @@ LibModule.mode = Module.new(
 )
 
 -- Show the file path, relative to the project root dir.
-LibModule.path = Module.new(
+Components.path = Comp.new(
   function()
     local fname = vim.fn.expand("%")
     local fpath = string.gsub(fname, vim.loop.cwd(), '')
@@ -53,7 +74,7 @@ LibModule.path = Module.new(
 )
 
 -- Indicator that the buffer has been modified.
-LibModule.modified = Module.new(
+Components.modified = Comp.new(
   function()
     if vim.bo.modified then
       return "+"
@@ -64,13 +85,14 @@ LibModule.modified = Module.new(
 )
 
 -- Display diagnostic count by severity.
-LibModule.diagnostics = Module.new(
+Components.diagnostics = Comp.new(
   function()
     local status = ""
-    for _, data in pairs(diag_data) do
-      local count = vim.tbl_count(vim.diagnostic.get(0, {severity = data.severity}))
+
+    for severity in severities do
+      local count = #vim.diagnostic.get(0, {severity = severity})
       if count ~= 0 then
-        status = status .. data.hl .. count .. data.display
+        status = status .. severity.hl .. count
       end
     end
 
@@ -85,7 +107,7 @@ LibModule.diagnostics = Module.new(
   {"DiagnosticChanged"}
 )
 
-LibModule.lsp = Module.new(
+Components.lsp = Comp.new(
   function()
     local lsp = ""
     local clients = vim.lsp.get_clients()
@@ -104,7 +126,7 @@ LibModule.lsp = Module.new(
 )
 
 -- Show file permissions.
-LibModule.permissions = Module.new(
+Components.permissions = Comp.new(
   function()
 		local fname = vim.fn.expand("%")
 		local fperm = " " .. vim.fn.getfperm(fname) .. " "
@@ -113,7 +135,7 @@ LibModule.permissions = Module.new(
 )
 
 -- Show line and column position of the cursor.
-LibModule.position = Module.new(
+Components.position = Comp.new(
   function()
     if vim.bo.filetype == "alpha" then
       return ""
@@ -123,7 +145,7 @@ LibModule.position = Module.new(
   {"CursorMoved"}
 )
 
-LibModule.size = Module.new(
+Components.size = Comp.new(
   function()
     local fname = vim.fn.expand("%")
     local fsize = vim.fn.getfsize(fname)
@@ -139,4 +161,4 @@ LibModule.size = Module.new(
   end
 )
 
-return LibModule
+return Components

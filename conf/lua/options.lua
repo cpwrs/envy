@@ -27,6 +27,7 @@ vim.opt.signcolumn = 'yes'
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = 'both'
 
+-- Other
 vim.opt.wrap = false
 vim.opt.scrolloff = 8
 vim.opt.incsearch = true

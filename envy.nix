@@ -14,7 +14,7 @@ let
     let
       # Derivation where each file of conf/ is copied to.
       configDir = pkgs.stdenv.mkDerivation {
-        name = "nvim-lua-config";
+        name = "nvim-config";
         src = ./${dir};
         installPhase = ''
           mkdir -p $out/
