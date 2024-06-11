@@ -1,7 +1,7 @@
 -- Highlight groups
+-- This is NOT an entire color scheme.
 
 -- Core color palette
--- local black = "#101010"
 local black = "#1c1714"
 local dark = "#0e0d0c"
 local white = "#f7f7f7"
@@ -96,10 +96,15 @@ local highlights = {
   Search          = { fg = cream, bg = grey5 },
 
   -- Diagnostics
-  DiagnosticError = { fg = red },
-  DiagnosticWarn  = { fg = orange },
-  DiagnosticInfo  = { fg = blue },
-  DiagnosticHint  = { fg = green },
+  DiagnosticError = { fg = red, bg = "none" },
+  DiagnosticWarn  = { fg = orange, bg = "none" },
+  DiagnosticInfo  = { fg = blue, bg = "none" },
+  DiagnosticHint  = { fg = green, bg = "none" },
+  -- Diagnostics on the status line
+  StatusError = { fg = red, bg = dark },
+  StatusWarn  = { fg = orange, bg = dark },
+  StatusInfo  = { fg = blue, bg = dark },
+  StatusHint  = { fg = green, bg = dark },
 
   -- Telescope
   TelescopeTitle  = { fg = green, bg = grey5, bold = true },
@@ -107,8 +112,9 @@ local highlights = {
   TelescopeNormal = { fg = white, bg = grey5 },
 
   -- Status line
-  LineNormal      = { fg = white, bg = dark },
-  LineImportant   = { fg = bright, bg = dark, bold = true },
+  StatusLine      = { fg = white, bg = dark },
+  StatusOther     = { fg = grey2, bg = dark },
+  StatusImportant = { fg = bright, bg = dark, bold = true },
 }
 
 for hl, spec in pairs(highlights) do

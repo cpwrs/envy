@@ -2,35 +2,24 @@
 
 local Comp = {}
 
--- update_state: Function returning a string The output of the module.
--- events: List of nvim event strings this module should update on
+-- state_func: Function returning a string, the output of the component.
+-- events: List of nvim events the component should update on.
 function Comp.new(state_func, events)
-  local self = setmetatable({}, {__index = Comp})
-
+  local self = setmetatable({}, { __index = Comp })
   self.state = ""
   self.state_func = state_func
 
   -- Bind to WinEnter/BufEnter by default, plus any events specified.
-  self.events = {"WinEnter", "BufEnter", unpack(events or {})}
-
+  self.events = { "WinEnter", "BufEnter", unpack(events or {}) }
   return self
 end
 
 function Comp:exec()
-  self.state =  self.state_func()
+  self.state = self.state_func()
 end
-
 
 -- Define some modules for the line.
 local Components = {}
-
--- Severities and their associated hl for the diagnostics component.
-local severities = {
-  {severity = vim.diagnostic.severity.ERROR, hl = "%#DiagnosticError#"},
-  {severity = vim.diagnostic.severity.WARN, hl = "%#DiagnosticWarn#"},
-  {severity = vim.diagnostic.severity.INFO, hl = "%#DiagnosticInfo#"},
-  {severity = vim.diagnostic.severity.HINT, hl = "%#DiagnosticHint#"},
-}
 
 -- Translations for the mode component.
 local translate_mode = {
@@ -61,15 +50,19 @@ Components.mode = Comp.new(
     if mode == nil then mode = "Mode" end
     return string.format(" %s", mode)
   end,
-  {"ModeChanged"}
+  { "ModeChanged" }
 )
 
 -- Show the file path, relative to the project root dir.
 Components.path = Comp.new(
   function()
-    local fname = vim.fn.expand("%")
-    local fpath = string.gsub(fname, vim.loop.cwd(), '')
-    return fpath
+    -- Messy code to make the tail of the path a different highlight
+    local name = vim.fn.expand("%:t")
+    local relpath = string.gsub(vim.fn.expand("%"), vim.loop.cwd(), '')
+    local relnotail = string.gsub(relpath, name, '')
+
+    local path = "%#StatusOther#" .. relnotail .. "%*" .. name
+    return path
   end
 )
 
@@ -81,30 +74,34 @@ Components.modified = Comp.new(
     end
     return ""
   end,
-  {"BufModifiedSet"}
+  { "BufModifiedSet" }
 )
+
+-- Severities and their associated hl for the diagnostics component.
+local severities = {
+  [vim.diagnostic.severity.ERROR] = "%#StatusError#",
+  [vim.diagnostic.severity.WARN] = "%#StatusWarn#",
+  [vim.diagnostic.severity.INFO] = "%#StatusInfo#",
+  [vim.diagnostic.severity.HINT] = "%#StatusHint#",
+}
 
 -- Display diagnostic count by severity.
 Components.diagnostics = Comp.new(
   function()
-    local status = ""
-
-    for severity in severities do
-      local count = #vim.diagnostic.get(0, {severity = severity})
+    local diags = ""
+    for sev, hl in pairs(severities) do
+      local count = #vim.diagnostic.get(0, { severity = sev })
       if count ~= 0 then
-        status = status .. severity.hl .. count
+        diags = diags .. hl .. count .. "%#StatusOther#,%*"
       end
     end
 
-    if status ~= "" then
-      status = " " .. status .. "%#LineNormal#"
-    else
-      status = " "
+    if diags ~= "" then
+      diags = "%#StatusOther#[%*" .. string.sub(diags, 1, -4) .. "]%*"
     end
-
-    return status
+    return diags
   end,
-  {"DiagnosticChanged"}
+  { "DiagnosticChanged" }
 )
 
 Components.lsp = Comp.new(
@@ -112,9 +109,7 @@ Components.lsp = Comp.new(
     local lsp = ""
     local clients = vim.lsp.get_clients()
 
-    if next(clients) == nil then
-      lsp = ""
-    else
+    if next(clients) ~= nil then
       for _, client in pairs(clients) do
         lsp = lsp .. client.name
       end
@@ -122,15 +117,20 @@ Components.lsp = Comp.new(
 
     return " " .. lsp
   end,
-  {"LspAttach", "LspDetach"}
+  { "LspAttach", "LspDetach" }
 )
 
 -- Show file permissions.
 Components.permissions = Comp.new(
   function()
-		local fname = vim.fn.expand("%")
-		local fperm = " " .. vim.fn.getfperm(fname) .. " "
-  	return fperm
+    local fpath = vim.fn.expand("%")
+    local fperm = vim.fn.getfperm(fpath)
+
+    if fperm ~= "" then
+      return " %#StatusOther#(%*" .. fperm .. "%#StatusOther#)%* "
+    else
+      return " "
+    end
   end
 )
 
@@ -140,25 +140,10 @@ Components.position = Comp.new(
     if vim.bo.filetype == "alpha" then
       return ""
     end
-    return " %l,%c"
+    return " %l%#StatusOther#:%*%c"
   end,
-  {"CursorMoved"}
+  { "CursorMoved" }
 )
 
-Components.size = Comp.new(
-  function()
-    local fname = vim.fn.expand("%")
-    local fsize = vim.fn.getfsize(fname)
-    local size_string = ""
-
-    if (fsize == -1) or (fsize == -2) then
-      size_string = ""
-    else
-      size_string = " " .. fsize .. "B"
-    end
-
-    return size_string
-  end
-)
 
 return Components

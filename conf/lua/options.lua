@@ -1,4 +1,4 @@
--- Options 
+-- Options
 
 
 -- Status line and cmd line
@@ -9,6 +9,7 @@ vim.opt.showcmd = true
 -- Finding files
 vim.opt.wildmenu = true
 vim.opt.path:append('**')
+vim.opt.completeopt = {'menu', 'popup', 'fuzzy', 'noinsert'}
 
 -- 24-bit RGB
 vim.opt.termguicolors = true
@@ -23,7 +24,7 @@ vim.opt.smarttab = true
 -- Line numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = 'number'
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = 'both'
 

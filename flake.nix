@@ -5,7 +5,7 @@
       url = "github:nixos/nixpkgs/nixos-unstable";
     };
     neovim = {
-      url = "github:neovim/neovim/stable?dir=contrib";
+      url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
