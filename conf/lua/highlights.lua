@@ -2,20 +2,20 @@
 -- This is NOT an entire color scheme.
 
 -- Core color palette
-local black = "#1c1714"
-local dark = "#0e0d0c"
+local black = "#32302f"
+local dark = "#1d2021"
 local white = "#f7f7f7"
 local bright = "#ffffff"
 
 local grey1 = "#625f5f"
-local grey2 = "#544f4d"
-local grey3 = "#45403d"
-local grey4 = "#3b3531"
-local grey5 = "#322c27"
-local grey6 = "#25201b"
+local grey2 = "#928374"
+local grey3 = "#7c6f64"
+local grey4 = "#665c54"
+local grey5 = "#504945"
+local grey6 = "#3c3836"
 
-local orange = "#fdd6b6"
-local cream = "#fdffd1"
+local orange = "#fe8019"
+local cream = "#ebdbb2"
 local red = "#ff4353"
 local melon = "#ff909d"
 local green = "#89ffcb"
@@ -35,24 +35,24 @@ local highlights = {
   Boolean         = { fg = purple },
   Float           = { fg = melon },
   Identifier      = { fg = cream },
-  Function        = { fg = blue },
+  Function        = { fg = orange },
   Conditional     = { fg = turq },
   Statement       = { fg = purple },
   Repeat          = { fg = turq },
   Label           = { fg = purple },
   Operator        = { fg = green },
-  Keyword         = { fg = turq },
+  Keyword         = { fg = pink },
   Exception       = { fg = red },
   PreProc         = { fg = purple },
   PreCondit       = { fg = purple },
   Include         = { fg = green },
   Define          = { fg = green },
-  Type            = { fg = pink },
+  Type            = { fg = white, bold = true },
   StorageClass    = { fg = pink },
   Structure       = { fg = purple },
   Typedef         = { fg = purple },
   Special         = { fg = pink },
-  Delimiter       = { fg = bright },
+  Delimiter       = { fg = grey1 },
   Underlined      = { fg = white },
   Bold            = { bold = true },
   Italic          = { italic = true },
