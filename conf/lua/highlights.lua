@@ -3,9 +3,9 @@
 
 -- Core color palette
 local black = "#1c1714"
-local dark = "#0o0d0c"
+local dark = "#0e0d0c"
 local white = "#f7f7f7"
-local offwhite = "#d2d1d1"
+local offwhite = "#adabab"
 local bright = "#ffffff"
 
 local grey1 = "#625f5f"
@@ -15,8 +15,8 @@ local grey4 = "#3b3531"
 local grey5 = "#322c27"
 local grey6 = "#25201b"
 
-local orange = "#ffa37a"
-local cream = "#ebdbb2"
+local orange = "#ffb699"
+local cream = "#fdffd1"
 local red = "#ff4353"
 local melon = "#ff909d"
 local green = "#89ffcb"
@@ -24,12 +24,12 @@ local tea = "#d3ffdb"
 local pink = "#ffb1f5"
 local purple = "#d19cff"
 local blue = "#a3b7ff"
-local turq = "#b2ffff"
+local turq = "#c9fafa"
 
 local highlights = {
   -- Syntax
   Comment         = { fg = grey1, italic = true },
-  Constant        = { fg = cream },
+  Constant        = { fg = orange },
   String          = { fg = tea },
   Character       = { fg = tea },
   Number          = { fg = melon },
@@ -37,8 +37,8 @@ local highlights = {
   Float           = { fg = melon },
   Identifier      = { fg = cream },
   Function        = { fg = blue },
-  Conditional     = { fg = turq },
-  Statement       = { fg = purple },
+  Conditional     = { fg = pink },
+  Statement       = { fg = pink },
   Repeat          = { fg = turq },
   Label           = { fg = purple },
   Operator        = { fg = green },
@@ -48,10 +48,10 @@ local highlights = {
   PreCondit       = { fg = purple },
   Include         = { fg = green },
   Define          = { fg = green },
-  Type            = { fg = pink },
-  StorageClass    = { fg = pink },
-  Structure       = { fg = purple },
-  Typedef         = { fg = purple },
+  Type            = { fg = cream },
+  StorageClass    = { fg = white },
+  Structure       = { fg = white },
+  Typedef         = { fg = white },
   Special         = { fg = pink },
   Delimiter       = { fg = offwhite },
   Underlined      = { fg = white },
