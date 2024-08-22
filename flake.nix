@@ -2,10 +2,7 @@
   description = "Tiny & fast neovim configuration";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    neovim = {
-      url = "github:neovim/neovim/stable?dir=contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    neovim.url = "github:nix-community/neovim-nightly-overlay";
   };
   outputs = { self, nixpkgs, neovim, flake-utils }:
     let
