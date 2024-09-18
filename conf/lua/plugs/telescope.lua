@@ -16,8 +16,7 @@ telescope.setup({
   },
 })
 
-vim.keymap.set('n', '<leader>ff', function() builtin.find_files() end, { desc = "Fuzzy find files" })
-vim.keymap.set('n', '<leader>fb', function() builtin.buffers() end, { desc = "Fuzzy find buffers" })
-vim.keymap.set('n', '<leader>fg', function() builtin.git_files() end, { desc = "Fuzzy find git files" })
-vim.keymap.set('n', '<leader>fr', function() builtin.live_grep() end, { desc = "Fuzzy grep" })
-vim.keymap.set('n', '<leader>fd', function() builtin.diagnostics() end, { desc = "Fuzzy find diagnostics" })
+vim.keymap.set('n', '<leader>f', function() builtin.find_files() end, { desc = "Fuzzy find files" })
+vim.keymap.set('n', '<leader>b', function() builtin.buffers() end, { desc = "Fuzzy find buffers" })
+vim.keymap.set('n', '<leader>g', function() builtin.live_grep() end, { desc = "Fuzzy grep" })
+vim.keymap.set('n', '<leader>d', function() builtin.diagnostics() end, { desc = "Fuzzy find diagnostics" })
