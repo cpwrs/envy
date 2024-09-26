@@ -44,7 +44,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 local function on_attach(client, bufnr)
   local function keymap(lhs, rhs, opts, mode)
     opts = type(opts) == "string" and { desc = opts }
-        or vim.tbl_extend('error', opts, { buffer = bufnr })
+           or vim.tbl_extend('error', opts, { buffer = bufnr })
     mode = mode or 'n'
     vim.keymap.set(mode, lhs, rhs, opts)
   end

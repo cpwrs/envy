@@ -35,3 +35,6 @@ vim.opt.incsearch = true
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+
+-- Ignore style recommendations 
+vim.g.python_recommended_style = 0
