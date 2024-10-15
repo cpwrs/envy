@@ -23,7 +23,7 @@ local green = "#89ffcb"
 local tea = "#d3ffdb"
 local pink = "#ffb1f5"
 local purple = "#d19cff"
-local blue = "#a3b7ff"
+local blue = "#aec1ff"
 local turq = "#c9fafa"
 
 local highlights = {
