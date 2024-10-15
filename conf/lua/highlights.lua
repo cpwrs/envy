@@ -101,6 +101,12 @@ local highlights = {
   DiagnosticWarn  = { fg = orange, bg = "none" },
   DiagnosticInfo  = { fg = blue, bg = "none" },
   DiagnosticHint  = { fg = green, bg = "none" },
+  DiagnosticUnnecessary = {},
+  DiagnosticUnderlineError = { underline = true, sp = red },
+  DiagnosticUnderlineWarn = { underline = true,  sp = orange },
+  DiagnosticUnderlineInfo = { underline = true, sp = blue },
+  DiagnosticUnderlineHint = { underline = true, sp = green },
+
   -- Diagnostics on the status line
   StatusError = { fg = red, bg = dark },
   StatusWarn  = { fg = orange, bg = dark },
