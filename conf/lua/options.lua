@@ -9,7 +9,9 @@ vim.opt.showcmd = true
 -- Finding files
 vim.opt.wildmenu = true
 vim.opt.path:append('**')
-vim.opt.completeopt = {'menu', 'popup', 'fuzzy', 'noinsert'}
+
+-- Completion
+vim.opt.completeopt = {'menu', 'menuone', 'popup', 'fuzzy', 'noinsert'}
 
 -- 24-bit RGB
 vim.opt.termguicolors = true
