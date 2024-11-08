@@ -10,6 +10,4 @@ oil.setup({
   }
 })
 
-vim.keymap.set('n', '<space>o', function()
-  oil.open(vim.loop.cwd())
-end)
+vim.keymap.set('n', '<space>o', function() oil.open() end)

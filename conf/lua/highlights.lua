@@ -3,7 +3,7 @@
 
 -- Core color palette
 local black = "#1c1714"
-local dark = "#0e0d0c"
+local dark = "#12100e"
 local white = "#f7f7f7"
 local offwhite = "#adabab"
 local bright = "#ffffff"
