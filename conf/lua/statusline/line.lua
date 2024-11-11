@@ -1,13 +1,10 @@
--- Line is a container for components/strings that will
--- be compiled to a string for vim.opt.statusline.
-
 local Line = {}
 
 -- Content contains the components/strings.
 -- Members are displayed on the statusline left to right.
 Line.content = {}
 
--- Concatenate contnet into a single string to be displayed. 
+-- Concatenate content into a single string.
 function Line:compile()
   local state = ""
   for _, comp in pairs(self.content) do
@@ -20,7 +17,7 @@ function Line:compile()
   return state
 end
 
--- For each component in content: create autocmds to execute Module.state_func on Module.events
+-- For each component in content: create autocmds to execute Comp.state_func on Comp.events
 function Line:create_autocmds()
   for _, comp in pairs(self.content) do
     if type(comp) == "table" then

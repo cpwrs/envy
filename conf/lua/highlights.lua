@@ -1,5 +1,4 @@
 -- Highlight groups
--- This is not a real color scheme.
 
 -- Core color palette
 local black = "#1c1714"

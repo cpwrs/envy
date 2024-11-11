@@ -19,7 +19,7 @@ function Comp:exec()
 end
 
 -- Define some modules for the line.
-local Components = {}
+local CompLib = {}
 
 -- Translations for the mode component.
 local translate_mode = {
@@ -44,7 +44,7 @@ local translate_mode = {
 }
 
 -- Show the editing mode.
-Components.mode = Comp.new(
+CompLib.mode = Comp.new(
   function()
     local mode = translate_mode[vim.api.nvim_get_mode().mode]
     if mode == nil then mode = "Mode" end
@@ -54,7 +54,7 @@ Components.mode = Comp.new(
 )
 
 -- Show the file path, relative to the project root dir.
-Components.path = Comp.new(
+CompLib.path = Comp.new(
   function()
     -- Messy code to make the tail of the path a different highlight
     local name = vim.fn.expand("%:t")
@@ -67,7 +67,7 @@ Components.path = Comp.new(
 )
 
 -- Indicator that the buffer has been modified.
-Components.modified = Comp.new(
+CompLib.modified = Comp.new(
   function()
     if vim.bo.modified then
       return "+"
@@ -86,7 +86,7 @@ local severities = {
 }
 
 -- Display diagnostic count by severity.
-Components.diagnostics = Comp.new(
+CompLib.diagnostics = Comp.new(
   function()
     local diags = ""
     for sev, hl in pairs(severities) do
@@ -104,7 +104,7 @@ Components.diagnostics = Comp.new(
   { "DiagnosticChanged" }
 )
 
-Components.lsp = Comp.new(
+CompLib.lsp = Comp.new(
   function()
     local lsp = ""
     local clients = vim.lsp.get_clients()
@@ -121,7 +121,7 @@ Components.lsp = Comp.new(
 )
 
 -- Show file permissions.
-Components.permissions = Comp.new(
+CompLib.permissions = Comp.new(
   function()
     local fpath = vim.fn.expand("%")
     local fperm = vim.fn.getfperm(fpath)
@@ -135,7 +135,7 @@ Components.permissions = Comp.new(
 )
 
 -- Show line and column position of the cursor.
-Components.position = Comp.new(
+CompLib.position = Comp.new(
   function()
     if vim.bo.filetype == "alpha" then
       return ""
@@ -146,4 +146,4 @@ Components.position = Comp.new(
 )
 
 
-return Components
+return CompLib
