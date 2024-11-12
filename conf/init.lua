@@ -2,14 +2,17 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader =  ' '
 
--- Load neovim options and plugin configurations
+
+-- Load colorscheme
+require('americano').colorscheme()
+
+-- Load neovim options, plugin configurations, and custom statusline
 require('options')
-require('highlights')
 require('statusline')
 require('plugs')
 require('lsp')
 
--- Keymaps not specific to plugins
+-- Keymaps not specific to plugins:
 
 -- Navigate panes with Ctrl+HJKL
 vim.keymap.set('n', '<C-h>', function() vim.cmd [[wincmd h]] end)
