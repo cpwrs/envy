@@ -1,3 +1,9 @@
-envy is a WIP nix flake that overlays the default 
-[neovim nixpkg](https://github.com/NixOS/nixpkgs/tree/master/pkgs/applications/editors/neovim)
-to build neovim master, install plugins, and source my configurations.
+envy is a neovim configuration that sets up options, plugins, keybinds, LSP completions, and a custom statusline.
+<hr>
+Dependencies
+- neovim 0.11+
+- [oil.nvim](https://github.com/stevearc/oil.nvim)
+- [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+
