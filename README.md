@@ -1,6 +1,7 @@
-envy is a neovim configuration that sets up options, plugins, keybinds, LSP completions, and a custom statusline.
+**envy** is a neovim configuration that sets up options, plugins, keybinds, LSP completions, and a custom statusline.
 <hr>
-Dependencies
+**Dependencies**
+
 - neovim 0.11+
 - [oil.nvim](https://github.com/stevearc/oil.nvim)
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
