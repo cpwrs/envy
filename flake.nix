@@ -23,10 +23,10 @@
               customRC = ''
                 set runtimepath+=~/.config/nvim
                 luafile ~/.config/nvim/init.lua
-              ''
+              '';
               packages.all.start = plugins;
             };
-          }
+          };
       };
       pkgs = import nixpkgs {
         system = "x86_64-linux";
