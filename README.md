@@ -9,3 +9,4 @@
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 
+`nix build` for the exact dependency spec
