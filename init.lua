@@ -8,6 +8,9 @@ require('statusline')
 require('plugs')
 require('lsp')
 
+-- Set colorscheme
+require('americano').colorscheme()
+
 -- Keymaps not specific to plugins:
 
 -- Navigate panes with Ctrl+HJKL
