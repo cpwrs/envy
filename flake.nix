@@ -3,18 +3,27 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     neovim.url = "github:nix-community/neovim-nightly-overlay";
+    americano = {
+      flake = false;
+      url = "github:cpwrs/americano.nvim";
+    };
   };
-  outputs = { self, nixpkgs, neovim, flake-utils }:
+  outputs = { self, nixpkgs, neovim, americano }:
     let
       overlayFlakeInputs = prev: final: {
         neovim = neovim.packages.x86_64-linux.neovim;
       };
       overlayEnvy = prev: final: {
         envy = let
-	        plugins = with final.vimPlugins; [
+          americano-plug = final.vimUtils.buildVimPlugin {
+            name = "americano";
+            src = americano;
+          };
+          plugins = with final.vimPlugins; [
             oil-nvim
-	          telescope-nvim
-	          nvim-lspconfig
+            americano-plug
+            telescope-nvim
+            nvim-lspconfig
             nvim-treesitter.withAllGrammars
           ];
         in

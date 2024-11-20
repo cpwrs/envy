@@ -7,9 +7,12 @@ local methods = vim.lsp.protocol.Methods
 lspconfig.lua_ls.setup({
   settings = {
     Lua = {
-      diagnostics = { globals = { 'vim' } }
-    }
-  }
+      diagnostics = { globals = { 'vim' } },
+      workspace = {
+        ignoreDir = { ".direnv", ".git", ".direnv/flake-inputs", "dist", "build", "result", "flake.nix", "node_modules", "flake.lock" }
+      },
+    },
+  },
 })
 lspconfig.pyright.setup({})
 lspconfig.clangd.setup({})

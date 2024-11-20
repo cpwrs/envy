@@ -2,10 +2,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader =  ' '
 
-
--- Load colorscheme
-require('americano').colorscheme()
-
 -- Load neovim options, plugin configurations, and custom statusline
 require('options')
 require('statusline')
