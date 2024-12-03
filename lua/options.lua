@@ -34,7 +34,6 @@ vim.opt.cursorlineopt = 'both'
 vim.opt.wrap = false
 vim.opt.scrolloff = 8
 vim.opt.incsearch = true
-vim.opt.clipboard = 'unnamedplus'
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
