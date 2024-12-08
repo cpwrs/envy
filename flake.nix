@@ -1,7 +1,7 @@
 {
   description = "Tiny & fast neovim configuration";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     neovim.url = "github:nix-community/neovim-nightly-overlay";
     americano = {
       flake = false;

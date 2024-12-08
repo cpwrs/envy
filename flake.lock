@@ -3,11 +3,11 @@
     "americano": {
       "flake": false,
       "locked": {
-        "lastModified": 1733338916,
-        "narHash": "sha256-BFh10/R4uXnzA3/fy5YoON3cPQUSMZifVIG9oeZJ0yA=",
+        "lastModified": 1733339581,
+        "narHash": "sha256-qM15vas4oXVgSuxrDvCA+WfBgc9nwkoET/S/tZLU9gA=",
         "owner": "cpwrs",
         "repo": "americano.nvim",
-        "rev": "d1d1f4a83b5dda966e3761f40b7479c4a2c062f4",
+        "rev": "e62e26cd8659a78a7a55e00a83c02a126d67417f",
         "type": "github"
       },
       "original": {
@@ -218,16 +218,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1733220138,
-        "narHash": "sha256-Yh5XZ9yVurrcYdNTSWxYgW4+EJ0pcOqgM1043z9JaRc=",
+        "lastModified": 1733412085,
+        "narHash": "sha256-FillH0qdWDt/nlO6ED7h4cmN+G9uXwGjwmCnHs0QVYM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "bcb68885668cccec12276bbb379f8f2557aa06ce",
+        "rev": "4dc2fc4e62dbf62b84132fe526356fbac7b03541",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-24.05",
+        "ref": "nixos-24.11",
         "repo": "nixpkgs",
         "type": "github"
       }
