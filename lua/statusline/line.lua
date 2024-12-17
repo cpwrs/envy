@@ -24,7 +24,7 @@ function Line:create_autocmds()
       vim.api.nvim_create_autocmd(comp.events, {
         callback = function()
           comp:exec()
-          vim.opt.statusline = self:compile()
+          vim.opt_local.statusline = self:compile()
         end
       })
     end
@@ -34,7 +34,7 @@ end
 function Line:setup(content)
   self.content = content
   self:create_autocmds()
-  vim.opt.statusline = self:compile()
+  vim.opt_local.statusline = self:compile()
 end
 
 return Line

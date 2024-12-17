@@ -2,7 +2,7 @@
 
 
 -- Status line and cmd line
-vim.opt.laststatus = 3
+vim.opt.laststatus = 2
 vim.opt.showmode = false
 vim.opt.showcmd = true
 

@@ -48,7 +48,7 @@ CompLib.mode = Comp.new(
   function()
     local mode = translate_mode[vim.api.nvim_get_mode().mode]
     if mode == nil then mode = "Mode" end
-    return string.format(" %s", mode)
+    return string.format("%s", mode)
   end,
   { "ModeChanged" }
 )
@@ -107,7 +107,7 @@ CompLib.diagnostics = Comp.new(
 CompLib.lsp = Comp.new(
   function()
     local lsp = ""
-    local clients = vim.lsp.get_clients()
+    local clients = vim.lsp.get_clients({bufnr = 0})
 
     if next(clients) ~= nil then
       for _, client in pairs(clients) do
@@ -127,7 +127,7 @@ CompLib.permissions = Comp.new(
     local fperm = vim.fn.getfperm(fpath)
 
     if fperm ~= "" then
-      return " %#StatusOther#(%*" .. fperm .. "%#StatusOther#)%* "
+      return " %#StatusOther#(%*" .. fperm .. "%#StatusOther#)%*"
     else
       return " "
     end
