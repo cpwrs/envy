@@ -8,7 +8,7 @@ local contents = {
   Components.position,
   Components.lsp,
   Components.diagnostics,
-  "%#StatusOther#%q", --Quickfix indicator
+  "%#StatusOther#%q", -- Quickfix indicator
   "%=", -- Align to the right
   Components.modified,
   Components.path,
