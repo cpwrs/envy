@@ -52,7 +52,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 local function on_attach(client, bufnr)
   local function keymap(lhs, rhs, opts, mode)
     opts = type(opts) == "string" and { desc = opts }
-           or vim.tbl_extend('error', opts, { buffer = bufnr })
+        or vim.tbl_extend('error', opts, { buffer = bufnr })
     mode = mode or 'n'
     vim.keymap.set(mode, lhs, rhs, opts)
   end
@@ -91,38 +91,39 @@ local function on_attach(client, bufnr)
   end, "List workspace folders")
 
   -- Enable insert mode completion.
-  if client.supports_method(methods.textDocument_completion) then
+  local completion_support = client.supports_method(methods.textDocument_completion)
+  if completion_support then
     vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
+  end
 
-    -- Use enter to accept completions.
-    keymap('<cr>', function()
-      return pumvisible() and '<C-y>' or '<cr>'
-    end, { expr = true }, 'i')
+  -- Use enter to accept completions.
+  keymap('<cr>', function()
+    return pumvisible() and '<C-y>' or '<cr>'
+  end, { expr = true }, 'i')
 
-    -- Use slash to dismiss the completion menu.
-    keymap('/', function()
-      return pumvisible() and '<C-e>' or '/'
-    end, { expr = true }, 'i')
+  -- Use slash to dismiss the completion menu.
+  keymap('/', function()
+    return pumvisible() and '<C-e>' or '/'
+  end, { expr = true }, 'i')
 
-    -- Use <C-n> to navigate to the next completion or:
-    -- - Trigger LSP completion.
-    -- - If there's no one, fallback to vanilla omnifunc.
-    keymap('<C-n>', function()
-      if pumvisible() then
-        feedkeys '<C-n>'
+  -- Use <C-n> to navigate to the next completion or:
+  -- - Trigger LSP completion.
+  -- - If there's no one, fallback to vanilla omnifunc.
+  keymap('<C-n>', function()
+    if pumvisible() then
+      feedkeys '<C-n>'
+    else
+      if next(vim.lsp.get_clients { bufnr = 0 }) and completion_support then
+        vim.lsp.completion.trigger()
       else
-        if next(vim.lsp.get_clients { bufnr = 0 }) then
-          vim.lsp.completion.trigger()
+        if vim.bo.omnifunc == '' then
+          feedkeys('<C-x><C-n>')
         else
-          if vim.bo.omnifunc == '' then
-            feedkeys('<C-x><C-n>')
-          else
-            feedkeys('<C-x><C-o>')
-          end
+          feedkeys('<C-x><C-o>')
         end
       end
-    end, "Trigger/select next completion", 'i')
-  end
+    end
+  end, "Trigger/select next completion", 'i')
 end
 
 vim.api.nvim_create_autocmd('LspAttach', {
