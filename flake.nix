@@ -21,17 +21,27 @@
           };
           plugins = with final.vimPlugins; [
             oil-nvim
+            blink-cmp
+            friendly-snippets
             americano-plug
             telescope-nvim
             nvim-lspconfig
             nvim-treesitter.withAllGrammars
           ];
+          config = pkgs.stdenv.mkDerivation {
+            name = "nvim-config";
+            src = ./.;
+            installPhase = ''
+              mkdir -p $out
+              cp -r . $out/
+            '';
+          };
         in
           final.wrapNeovim final.neovim {
             configure = {
               customRC = ''
-                set runtimepath+=~/.config/nvim
-                luafile ~/.config/nvim/init.lua
+                set runtimepath+=${config}
+                luafile ${config}/init.lua
               '';
               packages.all.start = plugins;
             };
