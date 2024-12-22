@@ -97,47 +97,12 @@ local function on_attach(client, bufnr)
   keymap('<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, "List workspace folders")
+end
 
-  -- Enable insert mode completion.
-  -- local completion_support = client.supports_method(methods.textDocument_completion)
-  -- if completion_support then
-  --   vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
-  -- end
-  --
-  -- -- Use enter to accept completions.
-  -- keymap('<cr>', function()
-    --   return pumvisible() and '<C-y>' or '<cr>'
-    -- end, { expr = true }, 'i')
-    --
-    -- -- Use slash to dismiss the completion menu.
-    -- keymap('/', function()
-      --   return pumvisible() and '<C-e>' or '/'
-      -- end, { expr = true }, 'i')
-      --
-      -- -- Use <C-n> to navigate to the next completion or:
-      -- -- - Trigger LSP completion.
-      -- -- - If there's no one, fallback to vanilla omnifunc.
-      -- keymap('<C-n>', function()
-        --   if pumvisible() then
-        --     feedkeys '<C-n>'
-        --   else
-        --     if next(vim.lsp.get_clients { bufnr = 0 }) and completion_support then
-        --       vim.lsp.completion.trigger()
-        --     else
-        --       if vim.bo.omnifunc == '' then
-        --         feedkeys('<C-x><C-n>')
-        --       else
-        --         feedkeys('<C-x><C-o>')
-        --       end
-        --     end
-        --   end
-        -- end, "Trigger/select next completion", 'i')
-      end
-
-      vim.api.nvim_create_autocmd('LspAttach', {
-        desc = "Configure LSP keymaps",
-        callback = function(args)
-          local client = vim.lsp.get_client_by_id(args.data.client_id)
-          on_attach(client, args.buf)
-        end,
-      })
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = "Configure LSP keymaps",
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    on_attach(client, args.buf)
+  end,
+})
