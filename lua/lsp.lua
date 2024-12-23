@@ -19,6 +19,7 @@ local servers = {
   pyright = {},
   clangd = {},
   rust_analyzer = {},
+  nil_ls = {},
 }
 
 for server, config in pairs(servers) do

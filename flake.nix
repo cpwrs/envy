@@ -63,7 +63,10 @@
         };
         
         devShells.default = pkgs.mkShell {
-          packages = [ pkgs.lua-language-server ];
+          packages = [ 
+            pkgs.lua-language-server
+            pkgs.nil   
+          ];
         };
       };
     };
