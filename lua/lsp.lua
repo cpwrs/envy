@@ -22,7 +22,7 @@ local servers = {
   nil_ls = {},
   denols = {},
   gopls = {},
-  tsserver = {},
+  ts_ls = {},
 }
 
 for server, config in pairs(servers) do
