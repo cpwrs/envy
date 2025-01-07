@@ -20,6 +20,9 @@ local servers = {
   clangd = {},
   rust_analyzer = {},
   nil_ls = {},
+  denols = {},
+  gopls = {},
+  tsserver = {},
 }
 
 for server, config in pairs(servers) do
