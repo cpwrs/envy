@@ -66,16 +66,6 @@ local function on_attach(client, bufnr)
     vim.keymap.set(mode, lhs, rhs, opts)
   end
 
-  -- Replacing certain <C-x>... keymaps.
-  local function feedkeys(keys)
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, false, true), 'n', true)
-  end
-
-  -- Check if the completion menu is open.
-  local function pumvisible()
-    return tonumber(vim.fn.pumvisible()) ~= 0
-  end
-
   -- Set up general keybinds.
   if client.supports_method(methods.textDocument_inlayHint) then
     keymap('<leader>h', function()
