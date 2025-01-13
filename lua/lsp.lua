@@ -23,6 +23,7 @@ local servers = {
   denols = {},
   gopls = {},
   ts_ls = {},
+  svelte = {},
 }
 
 for server, config in pairs(servers) do
