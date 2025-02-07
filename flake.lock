@@ -3,11 +3,11 @@
     "americano": {
       "flake": false,
       "locked": {
-        "lastModified": 1736276333,
-        "narHash": "sha256-6g8hrDhjALoplbUc924a69jjKR7TCOyJJnqYSvs/ImM=",
+        "lastModified": 1738911039,
+        "narHash": "sha256-KDhZ7IxbNNmglXi0npJknDogOFR497TW+DVzQvZHsmA=",
         "owner": "cpwrs",
         "repo": "americano.nvim",
-        "rev": "f675eab86b32541ec221d5335c070e1330ab1286",
+        "rev": "ff062ba6b7b40661cc52ab781287857c31665bb4",
         "type": "github"
       },
       "original": {
