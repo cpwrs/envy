@@ -23,6 +23,7 @@ local translate_mode = {
   ["r?"] = "Cfrm",
   ["!"] = "Shll",
   ["t"] = "Term",
+  ["nt"] = "Term",
 }
 
 -- Show the editing mode.
@@ -38,13 +39,14 @@ components.mode = {
 -- Show the file path, relative to the project root dir.
 components.path = {
   function()
-    -- Messy code to make the tail of the path a different highlight
-    local name = vim.fn.expand("%:t")
-    local relpath = string.gsub(vim.fn.expand("%"), vim.loop.cwd(), '')
-    local relnotail = string.gsub(relpath, name, '')
-
-    local path = "%#StatusOther#" .. relnotail .. "%*" .. name
-    return path
+    local mode = vim.api.nvim_get_mode().mode
+    if mode == "t" or mode == "nt" then
+      return "&#StatusOther#" .. vim.fn.getcwd()
+    end
+    local filename = vim.fn.expand("%:t")
+    -- Relative path without the filename and a / at the end
+    local relativepath = vim.fn.expand("%:.:h") .. "/"
+    return "%#StatusOther#" .. relativepath .. "%*" .. filename
   end
 }
 
@@ -52,7 +54,7 @@ components.path = {
 components.modified = {
   function()
     if vim.bo.modified then
-      return "+"
+      return "%*+"
     end
     return ""
   end,
