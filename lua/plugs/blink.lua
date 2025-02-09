@@ -10,14 +10,15 @@ blink.setup({
   end,
 
   keymap = { preset = "default" },
-  appearance = { use_nvim_cmp_as_default = true },
   signature = { enabled = true },
   fuzzy = { prebuilt_binaries = { download = false } },
 
   completion = {
+    ghost_text = { enabled = true },
     keyword = { range = 'full' },
     documentation = { auto_show = true, auto_show_delay_ms = 0 },
     menu = {
+      auto_show = false,
       draw = {
         columns = {
           { "label", "label_description", gap = 1 },
