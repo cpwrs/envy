@@ -4,7 +4,6 @@ vim.g.maplocalleader =  ' '
 
 -- Load neovim options, plugin configurations, and custom statusline
 require('options')
-require('colors')
 require('statusline')
 require('plugs')
 require('lsp')
