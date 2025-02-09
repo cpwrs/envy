@@ -48,15 +48,16 @@ vim.diagnostic.config({
     },
   },
   severity_sort = true,
-  virtual_text = {
-    severity = { min = vim.diagnostic.severity.ERROR },
-  },
   underline = true,
 })
 
 -- Global mappings
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open diagnostic float" })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Add diagnostics to location list" })
+vim.keymap.set('n', '<leader>d', function ()
+  local new = not vim.diagnostic.config().virtual_lines
+  vim.diagnostic.config({ virtual_lines = new })
+end, { desc = "Toggle diagnostic virtual_lines" })
 
 -- Credit to MariaSolOs for the built in insert completion!
 -- gist.github.com/MariaSolOs/2e44a86f569323c478e5a078d0cf98cc
@@ -85,7 +86,6 @@ local function on_attach(client, bufnr)
   keymap('gd', vim.lsp.buf.definition, "Go to definiton")
   keymap('gi', vim.lsp.buf.implementation, "Go to implementation")
   keymap('<C-k>', vim.lsp.buf.signature_help, "Signature help", 'i')
-  keymap('<leader>d', vim.lsp.buf.type_definition, "Go to the type definiton")
 
   keymap('<leader>wa', vim.lsp.buf.add_workspace_folder, "Add workspace folder")
   keymap('<leader>wr', vim.lsp.buf.remove_workspace_folder, "Remove workspace folder")
