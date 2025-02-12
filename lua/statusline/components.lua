@@ -30,11 +30,19 @@ local translate_mode = {
 components.mode = {
   function()
     local mode = translate_mode[vim.api.nvim_get_mode().mode]
-    if mode == nil then mode = "Mode" end
-    return string.format(" %s", mode)
+    if mode == nil then mode = "mode" end
+    return string.format("%s", mode)
   end,
   { "ModeChanged" }
 }
+
+-- Check if the file has been modified
+local function modified()
+  if vim.bo.modified then
+    return "%*+"
+  end
+  return ""
+end
 
 -- Show the file path, relative to the project root dir.
 components.path = {
@@ -42,8 +50,9 @@ components.path = {
     local filename = vim.fn.expand("%:t")
     -- Relative path without the filename and a / at the end
     local relativepath = vim.fn.expand("%:.:h") .. "/"
-    return "%#StatusOther#" .. relativepath .. "%*" .. filename
-  end
+    return modified() .. "%#StatusOther#" .. relativepath .. "%*" .. filename
+  end,
+  { "BufModifiedSet" },
 }
 
 -- Indicator that the buffer has been modified.
@@ -66,23 +75,21 @@ local severities = {
 }
 
 -- Display diagnostic count by severity.
-components.diagnostics = {
-  function()
-    local diags = ""
-    for sev, hl in pairs(severities) do
-      local count = #vim.diagnostic.get(0, { severity = sev })
-      if count ~= 0 then
-        diags = diags .. hl .. count .. "%#StatusOther#,%*"
-      end
+-- Helper function for the main lsp component.
+local function diagnostics()
+  local diags = ""
+  for sev, hl in pairs(severities) do
+    local count = #vim.diagnostic.get(0, { severity = sev })
+    if count ~= 0 then
+      diags = diags .. hl .. count .. "%#StatusOther#,%*"
     end
+  end
 
-    if diags ~= "" then
-      diags = "%#StatusOther#[%*" .. string.sub(diags, 1, -4) .. "]%*"
-    end
-    return diags
-  end,
-  { "DiagnosticChanged" }
-}
+  if diags ~= "" then
+    diags = "%#StatusOther#[%*" .. string.sub(diags, 1, -4) .. "]%*"
+  end
+  return diags
+end
 
 components.lsp = {
   function()
@@ -95,9 +102,9 @@ components.lsp = {
       end
     end
 
-    return " " .. lsp
+    return lsp .. diagnostics()
   end,
-  { "LspAttach", "LspDetach" }
+  { "LspAttach", "LspDetach", "DiagnosticChanged" }
 }
 
 -- Show file permissions.
@@ -107,9 +114,9 @@ components.permissions = {
     local fperm = vim.fn.getfperm(fpath)
 
     if fperm ~= "" then
-      return " %#StatusOther#(%*" .. fperm .. "%#StatusOther#)%* "
+      return "%#StatusOther#(%*" .. fperm .. "%#StatusOther#)%*"
     else
-      return " "
+      return ""
     end
   end
 }
@@ -120,7 +127,7 @@ components.position = {
     if vim.bo.filetype == "alpha" then
       return ""
     end
-    return " %l%#StatusOther#:%*%c"
+    return "%l%#StatusOther#:%*%c"
   end,
   { "CursorMoved" }
 }
