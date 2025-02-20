@@ -5,8 +5,8 @@ local blink = require("blink.cmp")
 blink.setup({
   enabled = function()
     return not vim.tbl_contains({ "markdown", "oil" }, vim.bo.filetype)
-      and vim.bo.buftype ~= "prompt"
-      and vim.b.completion ~= false
+        and vim.bo.buftype ~= "prompt"
+        and vim.b.completion ~= false
   end,
 
   keymap = { preset = "default" },
@@ -35,16 +35,13 @@ blink.setup({
 
   sources = {
     default = { 'lsp', 'path', 'snippets', 'buffer' },
-    -- cmdline completion based on cmdtype
-    cmdline = function()
-      local type = vim.fn.getcmdtype()
-      if type == "/" or type == "?" then
-        return { "buffer" }
-      end
-      if type == ":" then
-        return { "cmdline" }
-      end
-      return {}
-    end
-  }
+  },
+
+  cmdline = {
+    completion = {
+      menu = {
+        auto_show = true,
+      },
+    },
+  },
 })
