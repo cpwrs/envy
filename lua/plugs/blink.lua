@@ -24,11 +24,6 @@ blink.setup({
           { "label", "label_description", gap = 1 },
           { "kind" },
         },
-        components = {
-          kind = {
-            highlight = "PmenuKind",
-          }
-        }
       }
     }
   },

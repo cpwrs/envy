@@ -1,18 +1,23 @@
 local americano = require('americano')
-local colors = require('americano.colors')
+
+local p = americano.getPalette({soft = false, dull = true})
 
 americano.setup({
   terminal = true,
-  soft = true,
+  palette_config = {
+    soft = false,
+    dull = true,
+  },
   overrides = {
     -- Add status line highlights for my custom line
-    StatusError = { fg = colors.red, bg = colors.soft.grey4 },
-    StatusWarn = { fg = colors.orange, bg = colors.soft.grey4 },
-    StatusInfo = { fg = colors.blue, bg = colors.soft.grey4 },
-    StatusHint = { fg = colors.green, bg = colors.soft.grey4 },
-    StatusLine = { fg = colors.white, bg = colors.soft.grey4 },
-    StatusOther = { fg = colors.soft.grey1, bg = colors.soft.grey4 },
-    StatusImportant = { fg = colors.bright, bg = colors.soft.grey4, bold = true },
+    StatusError = { fg = p.red, bg = p.grey4 },
+    StatusWarn = { fg = p.orange, bg = p.grey4 },
+    StatusInfo = { fg = p.blue, bg = p.grey4 },
+    StatusHint = { fg = p.green, bg = p.grey4 },
+    StatusLine = { fg = p.white, bg = p.grey4 },
+    StatusOther = { fg = p.grey1, bg = p.grey4 },
+    StatusImportant = { fg = p.bright, bg = p.grey4, bold = true },
   }
 })
+
 americano.colorscheme()
