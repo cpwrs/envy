@@ -14,9 +14,8 @@ blink.setup({
   fuzzy = { prebuilt_binaries = { download = false } },
 
   completion = {
-    ghost_text = { enabled = true },
     keyword = { range = 'full' },
-    documentation = { auto_show = true, auto_show_delay_ms = 0 },
+    documentation = { auto_show = true, auto_show_delay_ms = 500 },
     menu = {
       auto_show = false,
       draw = {
@@ -24,8 +23,8 @@ blink.setup({
           { "label", "label_description", gap = 1 },
           { "kind" },
         },
-      }
-    }
+      },
+    },
   },
 
   sources = {

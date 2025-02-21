@@ -1,6 +1,6 @@
 local americano = require('americano')
 
-local p = americano.getPalette({soft = false, dull = true})
+local p = americano.getPalette({soft = false, dull = false})
 
 americano.setup({
   terminal = true,
