@@ -7,6 +7,9 @@ oil.setup({
   columns = {},
   win_options = {
     signcolumn = "no",
+  },
+  view_options = {
+    show_hidden = true,
   }
 })
 
