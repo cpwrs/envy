@@ -16,7 +16,7 @@ americano.setup({
     StatusHint = { fg = p.green, bg = p.grey4 },
     StatusLine = { fg = p.white, bg = p.grey4 },
     StatusOther = { fg = p.grey1, bg = p.grey4 },
-    StatusImportant = { fg = p.bright, bg = p.grey4, bold = true },
+    StatusImportant = { fg = p.cream, bg = p.grey4, bold = true },
   }
 })
 

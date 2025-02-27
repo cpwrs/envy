@@ -31,7 +31,7 @@ components.mode = {
   function()
     local mode = translate_mode[vim.api.nvim_get_mode().mode]
     if mode == nil then mode = "mode" end
-    return string.format("%s", mode)
+    return "%#StatusImportant#" .. string.format("%s", mode) .. "%*"
   end,
   { "ModeChanged" }
 }
@@ -50,7 +50,7 @@ components.path = {
     local filename = vim.fn.expand("%:t")
     -- Relative path without the filename and a / at the end
     local relativepath = vim.fn.expand("%:.:h") .. "/"
-    return modified() .. "%#StatusOther#" .. relativepath .. "%*" .. filename
+    return modified() .. "%#StatusOther#" .. relativepath .. "%#StatusImportant#" .. filename .. "%*"
   end,
   { "BufModifiedSet" },
 }
