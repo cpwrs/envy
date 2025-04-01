@@ -6,6 +6,14 @@ vim.opt.laststatus = 2
 vim.opt.showmode = false
 vim.opt.showcmd = true
 
+-- Folding
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldcolumn = "0"
+vim.opt.fillchars:append({fold = " "})
+
 -- Finding files
 vim.opt.wildmenu = true
 vim.opt.path:append('**')

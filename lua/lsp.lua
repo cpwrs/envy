@@ -59,9 +59,6 @@ vim.keymap.set('n', '<leader>d', function ()
   vim.diagnostic.config({ virtual_lines = new })
 end, { desc = "Toggle diagnostic virtual_lines" })
 
--- Credit to MariaSolOs for the built in insert completion!
--- gist.github.com/MariaSolOs/2e44a86f569323c478e5a078d0cf98cc
-
 -- Set up LSP keymaps and  autocommands for the given buffer.
 local function on_attach(client, bufnr)
   local function keymap(lhs, rhs, opts, mode)
