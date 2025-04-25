@@ -4,10 +4,6 @@ local p = americano.getPalette({soft = false, dull = false})
 
 americano.setup({
   terminal = true,
-  palette_config = {
-    soft = false,
-    dull = true,
-  },
   overrides = {
     -- Add status line highlights for my custom line
     StatusError = { fg = p.red, bg = p.grey4 },
