@@ -1,9 +1,8 @@
 {
   description = "Tiny & fast neovim configuration";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    neovim.url = "github:nix-community/neovim-nightly-overlay";
     blink.url = "github:Saghen/blink.cmp";
     americano = {
       flake = false;
@@ -11,7 +10,7 @@
     };
   };
   
-  outputs = { self, nixpkgs, flake-parts, neovim, blink, americano, ... }@inputs:
+  outputs = { self, nixpkgs, flake-parts, blink, americano, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
       
@@ -21,7 +20,6 @@
           inherit system;
           overlays = [
             (final: prev: {
-              neovim = neovim.packages.${system}.neovim;
               envy = let
                 plugins = with final.vimPlugins; [
                   oil-nvim
@@ -45,7 +43,7 @@
                     cp -r . $out/
                   '';
                 };
-              in final.wrapNeovim final.neovim {
+              in final.wrapNeovim final.neovim-unwrapped {
                 configure = {
                   # Add config derivatoin to runtimepath, start all plugins
                   customRC = ''

@@ -1,35 +1,27 @@
--- All LSP configurations.
+-- Enable LSPs, configure diagnostics, and set LSP keymaps
 
-local lspconfig = require('lspconfig')
-local capabilities = require('blink.cmp').get_lsp_capabilities()
-local methods = vim.lsp.protocol.Methods
+vim.lsp.enable(
+  "lua_ls",
+  "pyright",
+  "clangd",
+  "rust_analyzer",
+  "nil_ls",
+  "denols",
+  "gopls",
+  "ts_ls",
+  "svelte"
+)
 
--- Set up language servers with lspconfig defaults.
-local servers = {
-  lua_ls = {
-    settings = {
-      Lua = {
-        diagnostics = { globals = { 'vim' } },
-        workspace = {
-          ignoreDir = { ".direnv", ".git", ".direnv/flake-inputs", "dist", "build", "result", "flake.nix", "node_modules", "flake.lock" }
-        },
+vim.lsp.config("lua_ls", {
+  settings = {
+    Lua = {
+      diagnostics = { globals = { 'vim' } },
+      workspace = {
+        ignoreDir = { ".direnv", ".git", ".direnv/flake-inputs", "dist", "build", "result", "flake.nix", "node_modules", "flake.lock" }
       },
     },
   },
-  pyright = {},
-  clangd = {},
-  rust_analyzer = {},
-  nil_ls = {},
-  denols = {},
-  gopls = {},
-  ts_ls = {},
-  svelte = {},
-}
-
-for server, config in pairs(servers) do
-  config.capabilities = capabilities
-  lspconfig[server].setup(config)
-end
+})
 
 -- Configure diagnostics.
 vim.diagnostic.config({
@@ -59,6 +51,7 @@ vim.keymap.set('n', '<leader>d', function ()
   vim.diagnostic.config({ virtual_lines = new })
 end, { desc = "Toggle diagnostic virtual_lines" })
 
+local methods = vim.lsp.protocol.Methods
 -- Set up LSP keymaps and  autocommands for the given buffer.
 local function on_attach(client, bufnr)
   local function keymap(lhs, rhs, opts, mode)
