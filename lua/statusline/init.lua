@@ -8,7 +8,7 @@ local contents = {
   components.position,
   components.lsp,
   "%#StatusOther#%q", -- Quickfix indicator
-  "%=", -- Align to the right
+  "%=", -- Align right
   components.path,
   components.permissions,
 }

@@ -4,8 +4,8 @@ vim.g.maplocalleader =  ' '
 
 -- Load neovim options, plugin configurations, and custom statusline
 require('options')
-require('statusline')
 require('plugs')
+require('statusline')
 require('lsp')
 
 -- Start/end of line with H and L
