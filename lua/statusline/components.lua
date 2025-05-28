@@ -132,4 +132,14 @@ components.position = {
   { "CursorMoved" }
 }
 
+-- Formatted window number
+components.window = {
+  function(ev)
+    return (ev ~= nil and ev.event == "WinLeave")
+      and "%#StatusError#%{winnr()}%*"
+      or "%#StatusHint#%{winnr()}%*"
+  end,
+  { "WinLeave", "WinEnter" }
+}
+
 return components

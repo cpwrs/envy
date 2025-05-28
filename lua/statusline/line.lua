@@ -12,8 +12,8 @@ function line.setup(components)
       -- Bind to WinEnter/BufEnter by default, plus any events specified
       local events = { "WinEnter", "BufEnter", unpack(comp[2] or {}) }
       vim.api.nvim_create_autocmd(events, {
-        callback = function()
-          cache[i] = comp[1]()
+        callback = function(ev)
+          cache[i] = comp[1](ev)
           local cache_no_empties = vim.tbl_filter(function(c) return c ~= "" end, cache)
           vim.opt_local.statusline = table.concat(cache_no_empties, " ")
         end
