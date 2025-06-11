@@ -1,6 +1,6 @@
 -- Enable LSPs, configure diagnostics, and set LSP keymaps
 
-vim.lsp.enable(
+vim.lsp.enable({
   "lua_ls",
   "pyright",
   "clangd",
@@ -10,7 +10,7 @@ vim.lsp.enable(
   "gopls",
   "ts_ls",
   "svelte"
-)
+})
 
 vim.lsp.config("lua_ls", {
   settings = {

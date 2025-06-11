@@ -15,7 +15,7 @@
       systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
       
       # Build for each system
-      perSystem = { config, self', pkgs, system, ... }: {
+      perSystem = { pkgs, system, ... }: {
         _module.args.pkgs = import nixpkgs {
           inherit system;
           overlays = [
@@ -66,7 +66,7 @@
         devShells.default = pkgs.mkShell {
           packages = [ 
             pkgs.lua-language-server
-            pkgs.nil   
+            pkgs.nixd   
           ];
         };
       };
