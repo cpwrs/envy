@@ -5,7 +5,7 @@ vim.lsp.enable(
   "pyright",
   "clangd",
   "rust_analyzer",
-  "nil_ls",
+  "nixd",
   "denols",
   "gopls",
   "ts_ls",
