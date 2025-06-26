@@ -23,6 +23,16 @@ vim.lsp.config("lua_ls", {
   },
 })
 
+vim.lsp.config("nixd", {
+  settings = {
+    nixd = {
+      formatting = {
+        command = { "alejandra" },
+      },
+    },
+  },
+})
+
 -- Configure diagnostics.
 vim.diagnostic.config({
   signs = {
