@@ -5,7 +5,6 @@ local line = require('statusline/line')
 local components = require('statusline/components')
 
 local contents = {
-  components.window,
   components.mode,
   components.position,
   components.lsp,
