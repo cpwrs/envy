@@ -9,7 +9,8 @@ vim.lsp.enable({
   "denols",
   "gopls",
   "ts_ls",
-  "svelte"
+  "svelte",
+  "texlab"
 })
 
 vim.lsp.config("lua_ls", {
@@ -32,6 +33,35 @@ vim.lsp.config("nixd", {
     },
   },
 })
+
+vim.lsp.config("texlab", {
+  settings = {
+    texlab = {
+      auxDirectory = ".",
+      bibtexFormatter = "texlab",
+      latexFormatter = "latexindent",
+      latexindent = {
+        modifyLineBreaks = false,
+        ["local"] = nil,
+      },
+      build = {
+        executable = "latexmk",
+        args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
+        onSave = true,
+        forwardSearchAfter = true,
+      },
+      chktex = {
+        onOpenAndSave = true,
+        onEdit = false,
+      },
+      forwardSearch = {
+        executable = "zathura",
+        args = { "--synctex-forward", "%l:1:%f", "%p" },
+      },
+    },
+  },
+})
+
 
 -- Configure diagnostics.
 vim.diagnostic.config({
