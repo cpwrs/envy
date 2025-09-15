@@ -36,7 +36,6 @@ components.mode = {
   { "ModeChanged" }
 }
 
--- Check if the file has been modified
 local function modified()
   if vim.bo.modified then
     return "%*+"
@@ -53,17 +52,6 @@ components.path = {
     return modified() .. "%#StatusOther#" .. relativepath .. "%#StatusImportant#" .. filename .. "%*"
   end,
   { "BufModifiedSet" },
-}
-
--- Indicator that the buffer has been modified.
-components.modified = {
-  function()
-    if vim.bo.modified then
-      return "%*+"
-    end
-    return ""
-  end,
-  { "BufModifiedSet" }
 }
 
 -- Severities and their associated hl for the diagnostics component.

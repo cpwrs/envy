@@ -4,6 +4,7 @@ local p = americano.getPalette()
 
 americano.setup({
   terminal = true,
+  commentStyle = { italic = true },
   overrides = {
     -- Add status line highlights for my custom line
     StatusError = { fg = p.red },
