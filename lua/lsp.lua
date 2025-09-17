@@ -10,7 +10,8 @@ vim.lsp.enable({
   "gopls",
   "ts_ls",
   "svelte",
-  "texlab"
+  "texlab",
+  "qmlls"
 })
 
 vim.lsp.config("lua_ls", {
@@ -86,7 +87,7 @@ vim.diagnostic.config({
 -- Global mappings
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open diagnostic float" })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Add diagnostics to location list" })
-vim.keymap.set('n', '<leader>d', function ()
+vim.keymap.set('n', '<leader>d', function()
   local new = not vim.diagnostic.config().virtual_lines
   vim.diagnostic.config({ virtual_lines = new })
 end, { desc = "Toggle diagnostic virtual_lines" })
@@ -96,7 +97,7 @@ local methods = vim.lsp.protocol.Methods
 local function on_attach(client, bufnr)
   local function keymap(lhs, rhs, opts, mode)
     opts = type(opts) == "string" and { desc = opts }
-    or vim.tbl_extend('error', opts, { buffer = bufnr })
+        or vim.tbl_extend('error', opts, { buffer = bufnr })
     mode = mode or 'n'
     vim.keymap.set(mode, lhs, rhs, opts)
   end
