@@ -2,7 +2,7 @@
   description = "Tiny & fast neovim configuration";
 
   nixConfig = {
-    extra-substituters = [ 
+    extra-substituters = [
       "https://cache.garnix.io"
       "https://cache.nixos.org"
     ];
@@ -14,73 +14,68 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    flake-parts.url = "github:hercules-ci/flake-parts";
     blink.url = "github:Saghen/blink.cmp";
     americano = {
       flake = false;
       url = "github:cpwrs/americano.nvim";
     };
   };
-  
-  outputs = { self, nixpkgs, flake-parts, blink, americano, ... }@inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
-      
-      # Build for each system
-      perSystem = { pkgs, system, ... }: {
-        _module.args.pkgs = import nixpkgs {
-          inherit system;
-          overlays = [
-            (final: prev: {
-              envy = let
-                plugins = with final.vimPlugins; [
-                  oil-nvim
-                  # Build americano vim plugin from input 
-                  (final.vimUtils.buildVimPlugin {
-                    name = "americano";
-                    src = americano;
-                  })
-                  telescope-nvim
-                  nvim-lspconfig
-                  friendly-snippets
-                  nvim-treesitter.withAllGrammars
-                  blink.packages.${system}.default
-                ];
-                # Create derivation to hold config
-                config = final.stdenv.mkDerivation {
-                  name = "nvim-config";
-                  src = ./.;
-                  installPhase = ''
-                    mkdir -p $out
-                    cp -r . $out/
-                  '';
-                };
-              in final.wrapNeovim final.neovim-unwrapped {
-                configure = {
-                  # Add config derivatoin to runtimepath, start all plugins
-                  customRC = ''
-                    set runtimepath+=${config}
-                    luafile ${config}/init.lua
-                  '';
-                  packages.all.start = plugins;
-                };
-              };
-            })
-          ];
-        };
 
-        packages.default = pkgs.envy;
-        apps.default = {
-          type = "app";
-          program = "${pkgs.envy}/bin/nvim";
+  outputs = {
+    self,
+    nixpkgs,
+    blink,
+    americano,
+    ...
+  }: let
+    forEachSystem = fn:
+      nixpkgs.lib.genAttrs
+      nixpkgs.lib.platforms.unix (system: fn nixpkgs.legacyPackages.${system});
+  in {
+    packages = forEachSystem (pkgs: {
+      default = let
+        plugins = with pkgs.vimPlugins; [
+          oil-nvim
+          telescope-nvim
+          nvim-lspconfig
+          friendly-snippets
+          nvim-treesitter.withAllGrammars
+          blink.packages.${pkgs.stdenv.hostPlatform.system}.default
+          # Build americano vim plugin from input
+          (pkgs.vimUtils.buildVimPlugin {
+            name = "americano";
+            src = americano;
+          })
+        ];
+      in
+        pkgs.wrapNeovim pkgs.neovim-unwrapped {
+          configure = {
+            customRC = ''
+              set runtimepath+=${./.}
+              luafile ${./.}/init.lua
+            '';
+            packages.all.start = plugins;
+          };
         };
-        
-        devShells.default = pkgs.mkShell {
-          packages = [ 
-            pkgs.lua-language-server
-            pkgs.nixd   
-          ];
-        };
+    });
+
+    apps = forEachSystem (pkgs: let
+      envy = self.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    in {
+      default = {
+        type = "app";
+        program = "${envy}/bin/nvim";
       };
-    };
+    });
+
+    devShells = forEachSystem (pkgs: {
+      default = pkgs.mkShell {
+        packages = [
+          pkgs.lua-language-server
+          pkgs.nixd
+          pkgs.alejandra
+        ];
+      };
+    });
+  };
 }
