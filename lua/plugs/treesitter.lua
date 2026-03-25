@@ -1,9 +1,4 @@
--- nvim-treesitter configuration
-
-local treesitter = require('nvim-treesitter.configs')
-
-treesitter.setup {
-	auto_install = false,
-	highlight = { enable = true },
-	indent = { emable = true },
+require('nvim-treesitter.configs').setup {
+  highlight = { enable = true },
+  indent = { enable = true },
 }

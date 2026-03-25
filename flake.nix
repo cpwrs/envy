@@ -1,17 +1,14 @@
 {
   description = "Tiny & fast neovim configuration";
-
   nixConfig = {
     extra-substituters = [
       "https://cache.garnix.io"
       "https://cache.nixos.org"
     ];
-
     extra-trusted-public-keys = [
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
     ];
   };
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     blink.url = "github:Saghen/blink.cmp";
@@ -20,7 +17,6 @@
       url = "github:cpwrs/americano.nvim";
     };
   };
-
   outputs = {
     self,
     nixpkgs,
@@ -34,14 +30,14 @@
   in {
     packages = forEachSystem (pkgs: {
       default = let
+        treesitter = pkgs.vimPlugins.nvim-treesitter-legacy.withAllGrammars;
         plugins = with pkgs.vimPlugins; [
           oil-nvim
           telescope-nvim
           nvim-lspconfig
           friendly-snippets
-          nvim-treesitter.withAllGrammars
+          treesitter
           blink.packages.${pkgs.stdenv.hostPlatform.system}.default
-          # Build americano vim plugin from input
           (pkgs.vimUtils.buildVimPlugin {
             name = "americano";
             src = americano;
@@ -58,7 +54,6 @@
           };
         };
     });
-
     apps = forEachSystem (pkgs: let
       envy = self.packages.${pkgs.stdenv.hostPlatform.system}.default;
     in {
@@ -67,7 +62,6 @@
         program = "${envy}/bin/nvim";
       };
     });
-
     devShells = forEachSystem (pkgs: {
       default = pkgs.mkShell {
         packages = [
