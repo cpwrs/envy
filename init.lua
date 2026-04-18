@@ -1,6 +1,6 @@
 -- Set <space> as the leader key
 vim.g.mapleader = ' '
-vim.g.maplocalleader =  ' '
+vim.g.maplocalleader = ' '
 
 -- Load neovim options, plugin configurations, and custom statusline
 require('options')

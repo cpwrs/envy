@@ -1,5 +1,3 @@
--- Telescope plugin configuration
-
 local telescope = require('telescope')
 local builtin = require('telescope.builtin')
 

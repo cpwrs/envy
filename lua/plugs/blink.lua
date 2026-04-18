@@ -1,5 +1,3 @@
--- Blink completion config
-
 local blink = require("blink.cmp")
 
 blink.setup({

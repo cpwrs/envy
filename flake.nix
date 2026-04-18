@@ -31,6 +31,7 @@
     packages = forEachSystem (pkgs: {
       default = let
         plugins = with pkgs.vimPlugins; [
+          gitsigns-nvim
           oil-nvim
           telescope-nvim
           nvim-lspconfig

@@ -1,5 +1,3 @@
--- Setup the statusline with custom content (components, strings).
-
 local line = require('statusline/line')
 
 local components = require('statusline/components')

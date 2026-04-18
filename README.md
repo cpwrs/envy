@@ -10,3 +10,5 @@ Build the nix flake OR clone envy into `.config/nvim` and supply these dependenc
 - [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - [americano.nvim](https://github.com/cpwrs/americano.nvim)
+- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+- Any nvim-treesitter grammars / queries needed

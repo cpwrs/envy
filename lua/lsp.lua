@@ -95,11 +95,8 @@ end, { desc = "Toggle diagnostic virtual_lines" })
 local methods = vim.lsp.protocol.Methods
 -- Set up LSP keymaps and  autocommands for the given buffer.
 local function on_attach(client, bufnr)
-  local function keymap(lhs, rhs, opts, mode)
-    opts = type(opts) == "string" and { desc = opts }
-        or vim.tbl_extend('error', opts, { buffer = bufnr })
-    mode = mode or 'n'
-    vim.keymap.set(mode, lhs, rhs, opts)
+  local function keymap(lhs, rhs, desc, mode)
+    vim.keymap.set(mode or 'n', lhs, rhs, { desc = desc, buffer = bufnr })
   end
 
   -- Set up general keybinds.

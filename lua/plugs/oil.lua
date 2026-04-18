@@ -1,5 +1,3 @@
--- oil.nvim configuration
-
 local oil = require("oil")
 
 oil.setup({
