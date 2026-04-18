@@ -6,5 +6,7 @@ Build the nix flake OR clone envy into `.config/nvim` and supply these dependenc
 - [oil.nvim](https://github.com/stevearc/oil.nvim)
 - [blink.cmp](https://github.com/Saghen/blink.cmp)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
+- [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - [americano.nvim](https://github.com/cpwrs/americano.nvim)

@@ -103,7 +103,7 @@ local function on_attach(client, bufnr)
   end
 
   -- Set up general keybinds.
-  if client.supports_method(methods.textDocument_inlayHint) then
+  if client:supports_method(methods.textDocument_inlayHint) then
     keymap('<leader>h', function()
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
     end, "Toggle inlay hints")

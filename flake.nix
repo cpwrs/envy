@@ -30,13 +30,13 @@
   in {
     packages = forEachSystem (pkgs: {
       default = let
-        treesitter = pkgs.vimPlugins.nvim-treesitter-legacy.withAllGrammars;
         plugins = with pkgs.vimPlugins; [
           oil-nvim
           telescope-nvim
           nvim-lspconfig
           friendly-snippets
-          treesitter
+          nvim-treesitter-textobjects
+          pkgs.vimPlugins.nvim-treesitter.withAllGrammars
           blink.packages.${pkgs.stdenv.hostPlatform.system}.default
           (pkgs.vimUtils.buildVimPlugin {
             name = "americano";
@@ -68,6 +68,7 @@
           pkgs.lua-language-server
           pkgs.nixd
           pkgs.alejandra
+          pkgs.tree-sitter
         ];
       };
     });
