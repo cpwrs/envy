@@ -11,7 +11,10 @@
   };
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    blink.url = "github:Saghen/blink.cmp";
+    blink = {
+      url = "github:Saghen/blink.cmp";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     americano = {
       flake = false;
       url = "github:cpwrs/americano.nvim";
@@ -30,20 +33,21 @@
   in {
     packages = forEachSystem (pkgs: {
       default = let
-        plugins = with pkgs.vimPlugins; [
-          gitsigns-nvim
-          oil-nvim
-          telescope-nvim
-          nvim-lspconfig
-          friendly-snippets
-          nvim-treesitter-textobjects
-          pkgs.vimPlugins.nvim-treesitter.withAllGrammars
-          blink.packages.${pkgs.stdenv.hostPlatform.system}.default
-          (pkgs.vimUtils.buildVimPlugin {
-            name = "americano";
-            src = americano;
-          })
-        ];
+        plugins = with pkgs.vimPlugins;
+          [
+            gitsigns-nvim
+            oil-nvim
+            telescope-nvim
+            nvim-lspconfig
+            friendly-snippets
+            nvim-treesitter-textobjects
+            blink.packages.${pkgs.stdenv.hostPlatform.system}.default
+            (pkgs.vimUtils.buildVimPlugin {
+              name = "americano";
+              src = americano;
+            })
+          ]
+          ++ nvim-treesitter.withAllGrammars.dependencies;
       in
         pkgs.wrapNeovim pkgs.neovim-unwrapped {
           configure = {
@@ -69,7 +73,6 @@
           pkgs.lua-language-server
           pkgs.nixd
           pkgs.alejandra
-          pkgs.tree-sitter
         ];
       };
     });
