@@ -1,20 +1,7 @@
 {
   description = "Tiny & fast neovim configuration";
-  nixConfig = {
-    extra-substituters = [
-      "https://cache.garnix.io"
-      "https://cache.nixos.org"
-    ];
-    extra-trusted-public-keys = [
-      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-    ];
-  };
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    blink = {
-      url = "github:Saghen/blink.cmp";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst";
     americano = {
       flake = false;
       url = "github:cpwrs/americano.nvim";
@@ -23,7 +10,6 @@
   outputs = {
     self,
     nixpkgs,
-    blink,
     americano,
     ...
   }: let
@@ -35,19 +21,19 @@
       default = let
         plugins = with pkgs.vimPlugins;
           [
+            blink-cmp
             gitsigns-nvim
             oil-nvim
             telescope-nvim
             nvim-lspconfig
             friendly-snippets
+            nvim-treesitter.withAllGrammars
             nvim-treesitter-textobjects
-            blink.packages.${pkgs.stdenv.hostPlatform.system}.default
             (pkgs.vimUtils.buildVimPlugin {
               name = "americano";
               src = americano;
             })
-          ]
-          ++ nvim-treesitter.withAllGrammars.dependencies;
+          ];
       in
         pkgs.wrapNeovim pkgs.neovim-unwrapped {
           configure = {

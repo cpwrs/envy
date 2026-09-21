@@ -9,7 +9,6 @@ blink.setup({
 
   keymap = { preset = "default" },
   signature = { enabled = true },
-  fuzzy = { prebuilt_binaries = { download = false } },
 
   completion = {
     keyword = { range = 'full' },
