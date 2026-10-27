@@ -6,11 +6,16 @@
       flake = false;
       url = "github:cpwrs/americano.nvim";
     };
+    gitsigns = {
+      flake = false;
+      url = "github:lewis6991/gitsigns.nvim";
+    };
   };
   outputs = {
     self,
     nixpkgs,
     americano,
+    gitsigns,
     ...
   }: let
     forEachSystem = fn:
@@ -19,21 +24,23 @@
   in {
     packages = forEachSystem (pkgs: {
       default = let
-        plugins = with pkgs.vimPlugins;
-          [
-            blink-cmp
-            gitsigns-nvim
-            oil-nvim
-            telescope-nvim
-            nvim-lspconfig
-            friendly-snippets
-            nvim-treesitter.withAllGrammars
-            nvim-treesitter-textobjects
-            (pkgs.vimUtils.buildVimPlugin {
-              name = "americano";
-              src = americano;
-            })
-          ];
+        plugins = with pkgs.vimPlugins; [
+          blink-cmp
+          oil-nvim
+          telescope-nvim
+          nvim-lspconfig
+          friendly-snippets
+          nvim-treesitter.withAllGrammars
+          nvim-treesitter-textobjects
+          (pkgs.vimUtils.buildVimPlugin {
+            name = "americano";
+            src = americano;
+          })
+          (pkgs.vimUtils.buildVimPlugin {
+            name = "gitsigns.nvim";
+            src = gitsigns;
+          })
+        ];
       in
         pkgs.wrapNeovim pkgs.neovim-unwrapped {
           configure = {
