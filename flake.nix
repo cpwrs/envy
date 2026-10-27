@@ -1,7 +1,7 @@
 {
   description = "Tiny & fast neovim configuration";
   inputs = {
-    nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst";
+    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
     americano = {
       flake = false;
       url = "github:cpwrs/americano.nvim";
